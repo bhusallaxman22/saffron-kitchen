@@ -1,22 +1,19 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-
-// Example images - replace with your own
-import aboutMain from '../assets/hero-1.jpg'
-import aboutSide1 from '../assets/hero-2.jpg'
-import aboutSide2 from '../assets/butter-chicken.jpg'
+// src/components/About.js
+import React from 'react';
+import { motion } from 'framer-motion';
+import aboutMain from '../assets/hero-1.jpg';
+import aboutSide1 from '../assets/hero-2.jpg';
+import aboutSide2 from '../assets/butter-chicken.jpg';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-6" style={{ backgroundColor: '#1f1f1f', color: '#f9f9f9' }}
-    >
+    <section id="about" className="py-20 px-6 bg-gray-900 text-white">
       <div className="container mx-auto max-w-7xl">
-        {/* Title & Subtitle */}
         <div className="text-center mb-10">
           <motion.h2
-            className="font-extrabold text-5xl text-saffron mb-4 mt-16"
+            className="font-extrabold text-5xl mb-4 mt-16 text-yellow-400"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             About Us
@@ -24,25 +21,21 @@ export default function About() {
           <motion.p
             className="text-gray-300 text-xl"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
           >
             Welcome to the world of Saffron Kitchen & Bar
           </motion.p>
         </div>
-
-        {/* Grid layout: images on the left, text on the right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Images Column */}
           <motion.div
             className="flex flex-col gap-4"
             initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Main Image */}
             <div className="w-full h-72 md:h-96 overflow-hidden rounded-xl">
               <img
                 src={aboutMain}
@@ -50,8 +43,6 @@ export default function About() {
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-
-            {/* Two smaller images side by side */}
             <div className="grid grid-cols-2 gap-4">
               <div className="h-40 md:h-52 overflow-hidden rounded-xl">
                 <img
@@ -69,11 +60,9 @@ export default function About() {
               </div>
             </div>
           </motion.div>
-
-          {/* Text Column */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
@@ -84,7 +73,6 @@ export default function About() {
                 bringing you the authentic tastes of these diverse cuisines with
                 a modern twist, while honoring tradition.
               </p>
-
               <h3 className="text-2xl font-semibold">Our Story</h3>
               <p>
                 At Saffron Kitchen & Bar, food is not just about nourishment—it’s
@@ -101,7 +89,6 @@ export default function About() {
                 reflection of our dedication to quality, sustainability, and a
                 deep respect for the culinary heritage of India and Nepal.
               </p>
-
               <h3 className="text-2xl font-semibold">Our Philosophy</h3>
               <p>
                 Our philosophy is simple: food should be an adventure. We want to
@@ -112,7 +99,6 @@ export default function About() {
                 momo, Indian Tandoors and Himalayan BBQ, we promise an experience
                 that delights every sense.
               </p>
-
               <h3 className="text-2xl font-semibold">Join Us</h3>
               <p>
                 From the first bite to the last, we want every moment at Saffron
@@ -127,5 +113,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }
