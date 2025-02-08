@@ -9,7 +9,7 @@ const menuItems = {
             {
               "name": "Momo",
               "price": 10.99,
-              "img": "",
+              "img": "/menuItems/momos.jpg",
               "special": ["vegetarian", "vegan"],
               "description": "Steamed Nepali dumplings filled with seasoned meat or vegetables, served with a tangy dipping sauce.",
               "options": {
@@ -39,7 +39,7 @@ const menuItems = {
             {
               "name": "Chowmein",
               "price": 10.99,
-              "img": "",
+              "img": "/menuItems/chowmein.jpg",
               "special": ["vegetarian", "vegan"],
               "description": "Wok-tossed noodles with seasonal veggies, your choice of meat, and a touch of Himalayan spices.",
               "protein_options": [
