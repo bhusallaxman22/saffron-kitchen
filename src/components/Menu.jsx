@@ -1,54 +1,128 @@
+// src/components/Menu.js
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Fuse from "fuse.js";
 import menuData from "../data/menuItems";
 
+// --- Fuzzy Search Setup ---
+// Prepare all items from the JSON
+const flattenItems = () => {
+  let allItems = [];
+  menuData.menu.forEach((category) => {
+    if (category.subcategories) {
+      category.subcategories.forEach((subcat) => {
+        subcat.items.forEach((item) => {
+          allItems.push({
+            ...item,
+            category: category.category,
+            subcategory: subcat.name,
+          });
+        });
+      });
+    } else if (category.items) {
+      category.items.forEach((item) => {
+        allItems.push({ ...item, category: category.category });
+      });
+    }
+  });
+  return allItems;
+};
+
+const allItems = flattenItems();
+
+// Configure Fuse.js with all keys we want to search over
+const fuseOptions = {
+  keys: [
+    "name", // highest priority
+    "protein_options.name",
+    "type_options.name",
+    "options.fillings.name",
+    "description",
+    "options.cooking_methods.name",
+  ],
+  threshold: 0.4,
+};
+
+const fuse = new Fuse(allItems, fuseOptions);
+
+// Custom function to determine ranking based on which field(s) include the search term.
+const getRank = (item, query) => {
+  const lowerQuery = query.toLowerCase();
+  if (item.name.toLowerCase().includes(lowerQuery)) return 1;
+  // Check protein_options, type_options, options.fillings (consider these as "options")
+  if (
+    (item.protein_options &&
+      item.protein_options.some((opt) =>
+        opt.name.toLowerCase().includes(lowerQuery)
+      )) ||
+    (item.type_options &&
+      item.type_options.some((opt) =>
+        opt.name.toLowerCase().includes(lowerQuery)
+      )) ||
+    (item.options &&
+      item.options.fillings &&
+      item.options.fillings.some((opt) =>
+        opt.name.toLowerCase().includes(lowerQuery)
+      ))
+  ) {
+    return 2;
+  }
+  if (item.description && item.description.toLowerCase().includes(lowerQuery))
+    return 3;
+  if (
+    item.options &&
+    item.options.cooking_methods &&
+    item.options.cooking_methods.some((opt) =>
+      opt.name.toLowerCase().includes(lowerQuery)
+    )
+  )
+    return 4;
+  return 5;
+};
+
 export default function Menu() {
-  // Extract top-level category names from the JSON
+  // Extract top-level category names from JSON
   const categories = menuData.menu.map((cat) => cat.category);
   const [activeCategory, setActiveCategory] = useState(categories[0] || "");
   const [searchQuery, setSearchQuery] = useState("");
   const [modalImg, setModalImg] = useState(null);
 
-  // Flatten all items (from categories and subcategories) for search purposes
-  const flattenItems = () => {
-    let allItems = [];
-    menuData.menu.forEach((category) => {
-      if (category.subcategories) {
-        category.subcategories.forEach((subcat) => {
-          subcat.items.forEach((item) => {
-            allItems.push({
-              ...item,
-              category: category.category,
-              subcategory: subcat.name,
-            });
-          });
-        });
-      } else if (category.items) {
-        category.items.forEach((item) => {
-          allItems.push({ ...item, category: category.category });
-        });
-      }
+  // If a search query exists, run fuzzy search and then sort the results by rank and Fuse score
+  const getFuzzyResults = (query) => {
+    const results = fuse.search(query).map((result) => ({
+      item: result.item,
+      score: result.score,
+      rank: getRank(result.item, query),
+    }));
+    results.sort((a, b) => {
+      if (a.rank !== b.rank) return a.rank - b.rank;
+      return a.score - b.score;
     });
-    return allItems;
+    return results.map((result) => result.item);
   };
 
-  const allItems = flattenItems();
-
-  // Filter items based on search query (if any)
   const filteredItems = searchQuery.trim()
-    ? allItems.filter((item) => {
-      const q = searchQuery.toLowerCase();
-      return (
-        item.name.toLowerCase().includes(q) ||
-        (item.description &&
-          item.description.toLowerCase().includes(q))
-      );
-    })
+    ? getFuzzyResults(searchQuery)
     : null;
 
-  // A polished card-style component for a menu item.
-  // If item.img exists, we render a camera icon that opens a modal on click.
+  // Animation variants for item cards
+  const listItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
+
+  const listVariants = {
+    visible: {
+      transition: { staggerChildren: 0.05 },
+    },
+  };
+
+  // The animated ItemCard component for each menu item.
   const ItemCard = ({ item, setModalImg }) => (
-    <div className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow mb-6">
+    <motion.div
+      className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow mb-6"
+      variants={listItemVariants}
+    >
       <div className="flex items-center">
         <h3 className="text-xl font-serif font-semibold text-white flex-1">
           {item.name.toUpperCase()}
@@ -103,8 +177,7 @@ export default function Menu() {
           {item.protein_options
             .map(
               (opt) =>
-                `${opt.name}${opt.price ? ` (+$${opt.price})` : ""
-                }`
+                `${opt.name}${opt.price ? ` (+$${opt.price})` : ""}`
             )
             .join(" | ")}
         </p>
@@ -115,8 +188,7 @@ export default function Menu() {
           {item.type_options
             .map(
               (opt) =>
-                `${opt.name}${opt.price ? ` (+$${opt.price})` : ""
-                }`
+                `${opt.name}${opt.price ? ` (+$${opt.price})` : ""}`
             )
             .join(" | ")}
         </p>
@@ -128,8 +200,7 @@ export default function Menu() {
             {item.options.fillings
               .map(
                 (opt) =>
-                  `${opt.name}${opt.price ? ` (+$${opt.price})` : ""
-                  }`
+                  `${opt.name}${opt.price ? ` (+$${opt.price})` : ""}`
               )
               .join(" | ")}
           </span>
@@ -138,123 +209,188 @@ export default function Menu() {
             {item.options.cooking_methods
               .map(
                 (opt) =>
-                  `${opt.name}${opt.price ? ` (+$${opt.price})` : ""
-                  }`
+                  `${opt.name}${opt.price ? ` (+$${opt.price})` : ""}`
               )
               .join(" | ")}
           </span>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 
-  // Render search results as a list of item cards
+  // Render search results
   const renderSearchResults = () => {
     if (filteredItems.length === 0) {
       return (
-        <p className="text-center text-gray-400">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center text-gray-400"
+        >
           No items found for "{searchQuery}".
-        </p>
+        </motion.p>
       );
     }
     return (
-      <div className="space-y-6">
+      <motion.div
+        variants={listVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-6"
+      >
         {filteredItems.map((item, index) => (
           <ItemCard key={index} item={item} setModalImg={setModalImg} />
         ))}
-      </div>
+      </motion.div>
     );
   };
 
-  // Render the active category's items. If subcategories exist, display them with a heading.
+  // Render active category's items (or subcategories)
   const renderActiveCategory = () => {
     const activeCat = menuData.menu.find(
       (cat) => cat.category === activeCategory
     );
     if (!activeCat)
       return (
-        <p className="text-center text-gray-400">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center text-gray-400"
+        >
           No items available.
-        </p>
+        </motion.p>
       );
 
     if (activeCat.subcategories) {
       return activeCat.subcategories.map((subcat, index) => (
-        <div key={index} className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-4">
+        <motion.div
+          key={index}
+          className="mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 * index }}
+        >
+          <motion.h2
+            className="text-2xl font-bold text-white mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             {subcat.name.toUpperCase()}
-          </h2>
-          <div>
+          </motion.h2>
+          <motion.div
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {subcat.items.map((item, idx) => (
               <ItemCard key={idx} item={item} setModalImg={setModalImg} />
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       ));
     } else if (activeCat.items) {
       return (
-        <div>
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {activeCat.items.map((item, index) => (
             <ItemCard key={index} item={item} setModalImg={setModalImg} />
           ))}
-        </div>
+        </motion.div>
       );
     }
   };
 
   return (
-    <section className="min-h-screen bg-gray-900 text-white p-6">
-      <div className="max-w-6xl mx-auto">
+    <motion.section
+      className="min-h-screen bg-gray-900 text-white p-6 relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Decorative Fluff */}
+      <div className="absolute top-[-80px] right-[-80px] w-40 h-40 bg-yellow-400 opacity-20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-[-50px] left-[-50px] w-32 h-32 bg-blue-400 opacity-20 rounded-full blur-3xl animate-pulse delay-200"></div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <header className="mb-10 text-center">
-          <h1 className="font-extrabold text-5xl text-saffron mb-4 mt-20">
+        <motion.header
+          className="mb-10 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="font-extrabold text-5xl text-yellow-400 mb-4 mt-20">
             Our Menu
           </h1>
-          <input
+          <motion.input
             type="text"
             placeholder="Search dishes..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full max-w-md mx-auto px-4 py-2 rounded-full bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
           />
-        </header>
+        </motion.header>
 
-        {/* Category Navigation with a scroll indicator */}
+        {/* Category Navigation */}
         {searchQuery.trim() === "" && (
-          <nav className="relative mb-10 flex gap-4 overflow-x-auto px-4">
+          <motion.nav
+            className="relative mb-10 flex gap-4 overflow-x-auto px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             {categories.map((cat, idx) => (
-              <button
+              <motion.button
                 key={idx}
                 onClick={() => setActiveCategory(cat)}
                 className={`flex-shrink-0 px-4 py-2 rounded-full border border-blue-500 transition-colors ${activeCategory === cat
                     ? "bg-blue-500 text-white"
                     : "bg-transparent text-blue-200 hover:bg-blue-500 hover:text-white"
                   }`}
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
               >
                 {cat}
-              </button>
+              </motion.button>
             ))}
-            {/* Gradient overlay to signal scrollability on mobile */}
+            {/* Gradient overlay to signal scrollability */}
             <div className="absolute right-0 top-0 h-full w-12 pointer-events-none bg-gradient-to-l from-transparent to-gray-900" />
-          </nav>
+          </motion.nav>
         )}
 
         {/* Main Content */}
-        <main>
-          {searchQuery.trim()
-            ? renderSearchResults()
-            : renderActiveCategory()}
-        </main>
+        <AnimatePresence exitBeforeEnter>
+          <motion.main
+            key={activeCategory || searchQuery}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {searchQuery.trim() ? renderSearchResults() : renderActiveCategory()}
+          </motion.main>
+        </AnimatePresence>
       </div>
 
-      {/* Modal to display item image */}
+      {/* Modal for Image Display */}
       {modalImg && (
-        <div
+        <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
           onClick={(e) => {
-            // Only close if the backdrop itself is clicked.
             if (e.target === e.currentTarget) setModalImg(null);
           }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="relative">
             <img
@@ -267,7 +403,6 @@ export default function Menu() {
               className="absolute top-2 right-2 text-white bg-gray-700 p-1 rounded-full focus:outline-none hover:bg-gray-600"
               title="Close"
             >
-              {/* Close Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -279,8 +414,8 @@ export default function Menu() {
               </svg>
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
-    </section>
+    </motion.section>
   );
 }
