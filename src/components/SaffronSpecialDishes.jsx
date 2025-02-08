@@ -6,6 +6,7 @@ import lambSekuwa from '../assets/lamb-sekuwa.jpg'
 import butterChicken from '../assets/butter-chicken.jpg'
 import momos from '../assets/momos.jpg'
 import thakaliThali from '../assets/thakali-thali.jpg'
+import { Link } from 'react-router-dom'
 
 const dishes = [
   {
@@ -20,7 +21,7 @@ const dishes = [
   },
   {
     name: 'Masala Dosa',
-    image: thakaliThali, // Using thakali-thali.jpg as placeholder
+    image: thakaliThali,
     description: 'Classic South Indian crepe filled with spiced potatoes',
   },
   {
@@ -71,10 +72,12 @@ export default function SaffronSpecialDishes() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10">
+          <Link to="/menu" className="no-underline">
           <button className="bg-saffron text-black px-8 py-3 rounded-full hover:bg-opacity-90 transition-all">
             View Full Menu
           </button>
-          <button className="border border-saffron text-saffron px-8 py-3 rounded-full hover:bg-saffron hover:text-black transition-all">
+          </Link>
+          <button className="border border-saffron cursor-not-allowed opacity-50 text-saffron px-8 py-3 rounded-full hover:bg-saffron hover:text-black transition-all">
             Order Now
           </button>
         </div>

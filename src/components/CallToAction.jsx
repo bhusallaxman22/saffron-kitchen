@@ -23,13 +23,15 @@ export default function CallToAction() {
                     Book your table now and enjoy an unforgettable dining experience.
                 </motion.p>
 
-                <motion.button
-                    initial={{ scale: 0.9 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-saffron text-black py-3 px-8 rounded-full font-semibold hover:bg-opacity-90 transition-all"
-                >
-                    Reserve a Table
-                </motion.button>
+                <a href="#reservation">
+                    <motion.button
+                        initial={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-saffron text-black py-3 px-8 rounded-full font-semibold hover:bg-opacity-90 transition-all"
+                    >
+                        Reserve a Table
+                    </motion.button>
+                </a>
             </div>
         </section>
     )
