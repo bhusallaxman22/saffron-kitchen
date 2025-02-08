@@ -8,13 +8,13 @@ import aboutSide2 from '../assets/butter-chicken.jpg'
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-6 bg-gray-100 text-gray-800" style={{ backgroundColor: '#1f1f1f' }}
+    <section id="about" className="py-20 px-6" style={{ backgroundColor: '#1f1f1f', color: '#f9f9f9' }}
     >
       <div className="container mx-auto max-w-7xl">
         {/* Title & Subtitle */}
         <div className="text-center mb-10">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-2"
+            className="font-extrabold text-5xl text-saffron mb-4 mt-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -22,7 +22,7 @@ export default function About() {
             About Us
           </motion.h2>
           <motion.p
-            className="text-lg text-gray-600"
+            className="text-gray-300 text-xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}

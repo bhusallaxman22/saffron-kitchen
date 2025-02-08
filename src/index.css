@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -77,65 +79,4 @@
   50% {
     transform: translateY(-20px);
   }
-}
-
-.menu {
-  display: none;
-}
-
-.menu--is-visible {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .menu--is-visible {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.button {
-  margin: 0.5rem 1rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ffc600;
-  border-radius: 0.25rem;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  position: relative;
-  background: transparent;
-  cursor: pointer;
-}
-
-.button--is-active {
-  color: black;
-  background: #ffc600;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-.highlight {
-  position: absolute;
-  background: #ffc600;
-  border-radius: 0.25rem;
-  z-index: -1;
-  transition: all 0.24s;
-}
-
-.item__title {
-  font-family: 'Cookie', cursive;
-  color: #ffc600;
-  letter-spacing: 2px;
-}
-
-.item__price {
-  font-family: 'Cookie', cursive;
-  color: #ffc600;
 }

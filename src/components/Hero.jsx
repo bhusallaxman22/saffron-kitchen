@@ -1,20 +1,21 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 // Replace these images with your own
-import hero1 from '../assets/hero-1.jpg'
-import hero2 from '../assets/hero-2.jpg'
-import hero3 from '../assets/hero-3.jpg'
-import { Link } from 'react-router-dom'
+import hero1 from '../assets/hero-1.jpg';
+import hero2 from '../assets/hero-2.jpg';
+import hero3 from '../assets/hero-3.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative h-screen"
-      style={{ scrollSnapAlign: 'start' }}
+      className="relative min-h-screen overflow-auto"
+      // Optionally remove scrollSnapAlign if it's causing issues:
+      // style={{ scrollSnapAlign: 'start' }}
     >
       <Carousel
         showThumbs={false}
@@ -22,13 +23,13 @@ export default function Hero() {
         autoPlay
         interval={5000}
         showStatus={false}
-        className="h-full"
+        className="min-h-screen"
       >
         {[hero1, hero2, hero3].map((heroImage, index) => (
-          <div key={index} className="h-screen relative">
+          <div key={index} className="relative min-h-screen">
             <img
               src={heroImage}
-              className="h-full w-full object-cover"
+              className="min-h-screen w-full object-cover"
               alt={`Hero ${index + 1}`}
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -46,7 +47,6 @@ export default function Hero() {
                   Authentic Indian & Nepali Flavors,
                   <br className="hidden md:block" /> Crafted with Passion.
                 </motion.h1>
-
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -57,16 +57,16 @@ export default function Hero() {
                     Experience the best of both cuisines in one place.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link to="/menu" style={{ textDecoration: 'none' }}>
+                    <Link to="/menu" className="no-underline">
                       <button className="bg-saffron text-black px-6 py-3 rounded-full hover:bg-opacity-90 transition-all">
                         Explore Our Menu
                       </button>
                     </Link>
-                    <Link to="/reservation" style={{ textDecoration: 'none' }}>
+                    <a href="/#reservation" className="no-underline">
                       <button className="border border-saffron text-saffron px-6 py-3 rounded-full hover:bg-saffron hover:text-black transition-all">
                         Reserve a Table
                       </button>
-                    </Link>
+                    </a>
                   </div>
                 </motion.div>
               </motion.div>
@@ -75,5 +75,5 @@ export default function Hero() {
         ))}
       </Carousel>
     </section>
-  )
+  );
 }

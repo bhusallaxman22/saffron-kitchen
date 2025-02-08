@@ -23,9 +23,13 @@ export default function Footer() {
                 <div className="grid md:grid-cols-3 gap-8 mb-8">
                     <div>
                         <h3 className="text-xl font-bold mb-2">Contact Us</h3>
-                        <p>Address: 123 Spice Street, Kathmandu</p>
-                        <p>Phone: +977-1-1234567</p>
-                        <p>Email: info@saffronkitchen.com</p>
+                        <a href="https://www.google.com/maps/place/5005+S+Cooper+St+Suite+163,+Arlington,+Texas+76017" target="_blank" rel="noopener noreferrer">
+                            Address: 5005 S Cooper St Suite 163, Arlington, Texas 76017
+                        </a>
+                        <br />
+                        <a href="tel:+14697749151">Phone: (469) 774-9151</a>
+                        <br />
+                        <a href="mailto:info@saffronkitchenandbar.com">Email: info@saffronkitchenandbar.com</a>
                     </div>
 
                     {/* Social Media */}
@@ -33,7 +37,7 @@ export default function Footer() {
                         <h3 className="text-xl font-bold mb-2">Follow Us</h3>
                         <div className="flex gap-4">
                             <a
-                                href="https://instagram.com"
+                                href="https://www.instagram.com/saffronkitchen_dfw/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:text-saffron"

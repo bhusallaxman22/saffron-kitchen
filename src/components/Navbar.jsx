@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import { MenuAlt3Icon, XIcon } from '@heroicons/react/outline'
+import logo from '../assets/logo.png'
 import { motion } from 'framer-motion'
 
 const navigation = [
@@ -32,13 +33,8 @@ export function Navbar() {
             className="flex flex-col"
           >
             <Link to="/">
-              <span className="text-2xl font-bold text-saffron">
-                Saffron Kitchen & Bar
-              </span>
+              <img src={logo} alt="Saffron" className="h-12 w-auto" />
             </Link>
-            <span className="text-xs text-white">
-              Authentic Indian & Nepali Flavors
-            </span>
           </motion.div>
         </div>
 
@@ -77,8 +73,9 @@ export function Navbar() {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-saffron">Saffron</span>
-            <button
+          <Link to="/">
+              <img src={logo} alt="Saffron" className="h-12 w-auto" />
+            </Link>            <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-100"
               onClick={() => setMobileMenuOpen(false)}

@@ -29,7 +29,7 @@ export default function Catering() {
         <section id="catering" className="py-20 px-6 bg-gray-900 text-white">
             <div className="container mx-auto max-w-xl">
                 <motion.h2
-                    className="font-extrabold text-5xl mb-8 text-center"
+                    className="font-extrabold text-5xl text-saffron mb-4 mt-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

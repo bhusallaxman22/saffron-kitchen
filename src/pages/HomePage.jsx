@@ -14,7 +14,6 @@ export default function HomePage() {
             <Hero />
             <SaffronSpecialDishes />
             <CallToAction />
-            <Catering />
             <Reservation />
             <Testimonials />
         </>

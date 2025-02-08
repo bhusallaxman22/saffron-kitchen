@@ -1,109 +1,133 @@
-import React, { useState, useEffect } from 'react';
-import { menuItems } from '../data/menuItems';
+import React, { useState } from "react";
+import { menuItems } from "../data/menuItems";
 
 export default function Menu() {
-  const [activeCategory, setActiveCategory] = useState('Appetizer');
-  const [highlightStyle, setHighlightStyle] = useState({});
+  const [activeCategory, setActiveCategory] = useState("Appetizer");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Get the first-level categories
   const categories = Object.keys(menuItems);
 
-  // Update highlight position when active category changes
-  useEffect(() => {
-    const activeButton = document.querySelector('.button--is-active');
-    if (activeButton) {
-      const { width, height, left, top } = activeButton.getBoundingClientRect();
-      setHighlightStyle({
-        width: `${width}px`,
-        height: `${height}px`,
-        transform: `translate(${left + window.scrollX}px, ${top + window.scrollY}px)`
+  // Recursively flatten items (including subcategories)
+  const flattenItems = (data, category, subcategory = null) => {
+    let items = [];
+    if (Array.isArray(data)) {
+      return data.map((item) => ({ ...item, category, subcategory }));
+    } else if (typeof data === "object") {
+      Object.entries(data).forEach(([key, value]) => {
+        items = items.concat(flattenItems(value, category, key));
       });
     }
-  }, [activeCategory]);
+    return items;
+  };
 
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      const activeButton = document.querySelector('.button--is-active');
-      if (activeButton) {
-        const { width, height, left, top } = activeButton.getBoundingClientRect();
-        setHighlightStyle({
-          width: `${width}px`,
-          height: `${height}px`,
-          transform: `translate(${left + window.scrollX}px, ${top + window.scrollY}px)`
-        });
+  // Get all items across every category
+  const getAllItems = () => {
+    let allItems = [];
+    categories.forEach((category) => {
+      allItems = allItems.concat(flattenItems(menuItems[category], category));
+    });
+    return allItems;
+  };
+
+  const allItems = getAllItems();
+
+  // Filter items based on search query (if present)
+  const filteredItems = searchQuery.trim()
+    ? allItems.filter((item) => {
+        const q = searchQuery.toLowerCase();
+        return (
+          item.name.toLowerCase().includes(q) ||
+          (item.description && item.description.toLowerCase().includes(q))
+        );
+      })
+    : null;
+
+  // Render items: if searching, show filtered items; otherwise show active category items
+  const renderItems = () => {
+    if (filteredItems) {
+      if (filteredItems.length === 0) {
+        return (
+          <p className="text-center text-gray-400">
+            No items found for "{searchQuery}".
+          </p>
+        );
       }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Helper function to render menu items
-  const renderMenuItems = (items) => {
-    if (Array.isArray(items)) {
-      return items.map((item, index) => (
-        <div key={index} className="item mb-8">
-          <div className="item__header flex items-baseline">
-            <h3 className="item__title text-3xl font-cookie text-saffron mr-2">
-              {item.name}
-            </h3>
-            <span className="item__dots flex-1 border-b border-dashed border-gray-500 mx-2" />
-            <span className="item__price text-2xl font-cookie text-saffron">
-              {item.price}
-            </span>
+      return filteredItems.map((item, index) => (
+        <div
+          key={index}
+          className="p-4 border-b border-gray-600 hover:bg-gray-800 transition-colors"
+        >
+          <div className="flex justify-between items-baseline">
+            <h3 className="text-lg font-bold">{item.name.toUpperCase()}</h3>
+            <span className="text-lg text-blue-400">{item.price}</span>
           </div>
           {item.description && (
-            <p className="item__description text-gray-300 mt-2">
-              {item.description}
-            </p>
+            <p className="mt-2 text-sm text-gray-300">{item.description}</p>
           )}
         </div>
       ));
-    } else if (typeof items === 'object') {
-      return Object.entries(items).map(([subcategory, subItems]) => (
-        <div key={subcategory}>
-          <h3 className="text-2xl font-cookie text-saffron mb-4">{subcategory}</h3>
-          {renderMenuItems(subItems)}
+    } else {
+      const items = flattenItems(menuItems[activeCategory], activeCategory);
+      return items.map((item, index) => (
+        <div
+          key={index}
+          className="p-4 border-b border-gray-600 hover:bg-gray-800 transition-colors"
+        >
+          <div className="flex justify-between items-baseline">
+            <h3 className="text-lg font-bold">{item.name.toUpperCase()}</h3>
+            <span className="text-lg text-blue-400">{item.price}</span>
+          </div>
+          {item.description && (
+            <p className="mt-2 text-sm text-gray-300">{item.description}</p>
+          )}
         </div>
       ));
     }
-    return null;
   };
 
   return (
-    <section className="min-h-screen flex items-center" style={{
-      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://i.imgur.com/er8DtBW.jpg")',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}>
-      <div className="wrapper max-w-4xl mx-auto px-4 py-20">
-        <h2 className="inline-block border-b-4 border-saffron text-5xl font-cookie mb-12">
-          Our Menu
-        </h2>
+    <section className="min-h-screen bg-black flex justify-center items-center p-4 mt">
+      <div className="relative bg-white bg-opacity-20 backdrop-blur-md rounded-2xl p-8 w-full max-w-4xl shadow-xl border border-white border-opacity-30 transition-all duration-300 hover:brightness-105 mt-16">
+        {/* Decorative Fluff Elements */}
+        <div className="absolute top-[-30px] right-[-30px] w-20 h-20 bg-pink-400 rounded-full opacity-30 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-[-40px] left-[-40px] w-24 h-24 bg-green-400 rounded-full opacity-30 blur-xl animate-pulse delay-200"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-blue-400 rounded-full opacity-20 blur-xl animate-pulse delay-400"></div>
 
-        <div className="buttons-container mb-12">
-          {categories.map(category => (
-            <button
-              key={category}
-              className={`button ${activeCategory === category ? 'button--is-active' : ''}`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-          <span className="highlight absolute bg-saffron rounded transition-all" style={highlightStyle} />
+        <header className="relative z-10 text-center">
+          <h1 className="text-3xl font-serif text-white">Our Menu</h1>
+          <input
+            type="text"
+            className="mt-4 w-full max-w-sm mx-auto px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Search dishes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </header>
+
+        {searchQuery.trim() === "" && (
+          <nav className="relative z-10 mt-6 flex flex-wrap justify-center gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+                  activeCategory === cat
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-700 text-gray-300 hover:bg-blue-500 hover:text-white"
+                }`}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setSearchQuery("");
+                }}
+              >
+                {cat.toUpperCase()}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        <div className="relative z-10 mt-8 divide-y divide-gray-600">
+          {renderItems()}
         </div>
-
-        {categories.map(category => (
-          <div
-            key={category}
-            className={`menu ${activeCategory === category ? 'menu--is-visible' : ''}`}
-            id={`${category}Menu`}
-          >
-            {renderMenuItems(menuItems[category])}
-          </div>
-        ))}
       </div>
     </section>
   );
