@@ -1,109 +1,109 @@
-// src/components/Menu.js
-import React from 'react';
-import { Tab } from '@headlessui/react';
-import { motion } from 'framer-motion';
-import { FiCoffee, FiFastForward, FiSunrise } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
 import { menuItems } from '../data/menuItems';
 
-const categoryIcons = {
-  Breakfast: <FiSunrise />,
-  Lunch: <FiCoffee />,
-  Dinner: <FiFastForward />,
-};
-
 export default function Menu() {
+  const [activeCategory, setActiveCategory] = useState('Appetizer');
+  const [highlightStyle, setHighlightStyle] = useState({});
+
+  // Get the first-level categories
+  const categories = Object.keys(menuItems);
+
+  // Update highlight position when active category changes
+  useEffect(() => {
+    const activeButton = document.querySelector('.button--is-active');
+    if (activeButton) {
+      const { width, height, left, top } = activeButton.getBoundingClientRect();
+      setHighlightStyle({
+        width: `${width}px`,
+        height: `${height}px`,
+        transform: `translate(${left + window.scrollX}px, ${top + window.scrollY}px)`
+      });
+    }
+  }, [activeCategory]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      const activeButton = document.querySelector('.button--is-active');
+      if (activeButton) {
+        const { width, height, left, top } = activeButton.getBoundingClientRect();
+        setHighlightStyle({
+          width: `${width}px`,
+          height: `${height}px`,
+          transform: `translate(${left + window.scrollX}px, ${top + window.scrollY}px)`
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Helper function to render menu items
+  const renderMenuItems = (items) => {
+    if (Array.isArray(items)) {
+      return items.map((item, index) => (
+        <div key={index} className="item mb-8">
+          <div className="item__header flex items-baseline">
+            <h3 className="item__title text-3xl font-cookie text-saffron mr-2">
+              {item.name}
+            </h3>
+            <span className="item__dots flex-1 border-b border-dashed border-gray-500 mx-2" />
+            <span className="item__price text-2xl font-cookie text-saffron">
+              {item.price}
+            </span>
+          </div>
+          {item.description && (
+            <p className="item__description text-gray-300 mt-2">
+              {item.description}
+            </p>
+          )}
+        </div>
+      ));
+    } else if (typeof items === 'object') {
+      return Object.entries(items).map(([subcategory, subItems]) => (
+        <div key={subcategory}>
+          <h3 className="text-2xl font-cookie text-saffron mb-4">{subcategory}</h3>
+          {renderMenuItems(subItems)}
+        </div>
+      ));
+    }
+    return null;
+  };
+
   return (
-    <section id="menu" className="py-20" style={{ backgroundColor: 'var(--bg-color)' }}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="font-extrabold text-5xl text-white mb-4" style={{ color: 'var(--accent-color)' }}>Our Futuristic Menu</h2>
-          <p className="text-gray-300 text-xl" style={{ color: 'var(--text-color)' }}>
-            Innovative dishes that push the boundaries of taste
-          </p>
-        </motion.div>
-        {/* Top-level Tabs */}
-        <Tab.Group>
-          <Tab.List className="flex flex-wrap gap-4 justify-center mb-12">
-            {Object.keys(menuItems).map((category) => (
-              <Tab key={category}>
-                {({ selected }) => (
-                  <motion.button
-                    className={`px-6 py-2 rounded-full transition-colors ${selected
-                        ? 'bg-[var(--accent-color)] text-[var(--bg-color)]'
-                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {categoryIcons[category]} {category}
-                  </motion.button>
-                )}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels>
-            {Object.entries(menuItems).map(([category, subcategories]) => (
-              <Tab.Panel key={category}>
-                {/* Second-level Tabs */}
-                <Tab.Group>
-                  <Tab.List className="flex justify-center gap-4 mb-8">
-                    {Object.keys(subcategories).map((subcategory) => (
-                      <Tab key={subcategory}>
-                        {({ selected }) => (
-                          <motion.button
-                          className={`px-4 py-2 rounded-full transition-colors ${
-                            selected
-                              ? 'bg-[var(--accent-color)] text-[var(--bg-color)]'
-                              : 'bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200'
-                          }`}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            {subcategory}
-                          </motion.button>
-                        )}
-                      </Tab>
-                    ))}
-                  </Tab.List>
-                  <Tab.Panels>
-                    {Object.entries(subcategories).map(([subcategory, items]) => (
-                      <Tab.Panel key={subcategory}>
-                        <div className="grid md:grid-cols-2 gap-8">
-                          {items.map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              className="p-6 bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl hover:shadow-3xl transition-all flex items-center gap-4"
-                              whileHover={{ y: -10, scale: 1.02 }}
-                            >
-                              {item.image && (
-                                <img
-                                  src={item.image}
-                                  alt={item.name}
-                                  className="w-12 h-12 rounded-full object-cover border-2"
-                                  style={{ borderColor: 'var(--accent-color)' }}                                />
-                              )}
-                              <div className="flex flex-col w-full">
-                                <div className="flex justify-between items-center">
-                                  <h4 className="text-2xl font-bold" style={{ color: 'var(--text-color)' }}>{item.name}</h4>
-                                  <span className="text-saffron font-bold text-lg" style={{ color: 'var(--text-color)' }}>{item.price}</span>
-                                </div>
-                                <p className="text-gray-300 mt-1">{item.description}</p>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </Tab.Panel>
-                    ))}
-                  </Tab.Panels>
-                </Tab.Group>
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-        </Tab.Group>
+    <section className="min-h-screen flex items-center" style={{
+      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://i.imgur.com/er8DtBW.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}>
+      <div className="wrapper max-w-4xl mx-auto px-4 py-20">
+        <h2 className="inline-block border-b-4 border-saffron text-5xl font-cookie mb-12">
+          Our Menu
+        </h2>
+
+        <div className="buttons-container mb-12">
+          {categories.map(category => (
+            <button
+              key={category}
+              className={`button ${activeCategory === category ? 'button--is-active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+          <span className="highlight absolute bg-saffron rounded transition-all" style={highlightStyle} />
+        </div>
+
+        {categories.map(category => (
+          <div
+            key={category}
+            className={`menu ${activeCategory === category ? 'menu--is-visible' : ''}`}
+            id={`${category}Menu`}
+          >
+            {renderMenuItems(menuItems[category])}
+          </div>
+        ))}
       </div>
     </section>
   );
