@@ -1,4 +1,3 @@
-// src/components/Catering.js
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -46,7 +45,9 @@ export default function Catering() {
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="name" className="sr-only">Name</label>
+                        <label htmlFor="name" className="sr-only">
+                            Name
+                        </label>
                         <input
                             name="name"
                             type="text"
@@ -58,7 +59,9 @@ export default function Catering() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="email" className="sr-only">Email</label>
+                        <label htmlFor="email" className="sr-only">
+                            Email
+                        </label>
                         <input
                             name="email"
                             type="email"
@@ -70,7 +73,9 @@ export default function Catering() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="contactNumber" className="sr-only">Contact Number</label>
+                        <label htmlFor="contactNumber" className="sr-only">
+                            Contact Number
+                        </label>
                         <input
                             name="contactNumber"
                             type="tel"
@@ -82,7 +87,9 @@ export default function Catering() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="eventDate" className="sr-only">Event Date</label>
+                        <label htmlFor="eventDate" className="sr-only">
+                            Event Date
+                        </label>
                         <input
                             name="eventDate"
                             type="date"
@@ -93,7 +100,9 @@ export default function Catering() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="location" className="sr-only">Event Location</label>
+                        <label htmlFor="location" className="sr-only">
+                            Event Location
+                        </label>
                         <input
                             name="location"
                             type="text"
@@ -105,7 +114,9 @@ export default function Catering() {
                         />
                     </div>
                     <div>
-                        <label htmlFor="message" className="sr-only">Additional Message</label>
+                        <label htmlFor="message" className="sr-only">
+                            Additional Message
+                        </label>
                         <textarea
                             name="message"
                             placeholder="Tell us more about your event..."

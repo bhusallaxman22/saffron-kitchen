@@ -1,5 +1,5 @@
 {
-    "name": "Saffron Kitchen",
+    "name": "Saffron Kitchen & Bar",
     "short_name": "Saffron",
     "icons": [
         {
@@ -15,5 +15,6 @@
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "start_url": "/"
 }

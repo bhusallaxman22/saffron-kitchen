@@ -1,4 +1,3 @@
-// src/components/Footer.js
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
@@ -35,10 +34,7 @@ export default function Footer() {
                             Phone: (469) 774-9151
                         </a>
                         <br />
-                        <a
-                            href="mailto:info@saffronkitchenandbar.com"
-                            className="hover:text-saffron"
-                        >
+                        <a href="mailto:info@saffronkitchenandbar.com" className="hover:text-saffron">
                             Email: info@saffronkitchenandbar.com
                         </a>
                     </div>

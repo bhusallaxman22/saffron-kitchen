@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from '../components/Menu';
+import MenuList from '../components/organisms/MenuList';
 
 export default function MenuPage() {
-    return <Menu />;
+    return <MenuList />;
 }

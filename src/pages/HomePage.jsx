@@ -1,10 +1,10 @@
-// src/pages/HomePage.js
 import React from 'react';
-import Hero from '../components/Hero';
-import SaffronSpecialDishes from '../components/SaffronSpecialDishes';
-import CallToAction from '../components/CallToAction';
-import Reservation from '../components/Reservation';
-import Testimonials from '../components/Testimonials';
+import Hero from '../components/organisms/Hero';
+import SaffronSpecialDishes from '../components/organisms/SaffronSpecialDishes';
+import CallToAction from '../components/organisms/CallToAction';
+import Reservation from '../components/organisms/Reservation';
+import Testimonials from '../components/organisms/Testimonials';
+import About from '../components/organisms/About';
 
 export default function HomePage() {
     return (

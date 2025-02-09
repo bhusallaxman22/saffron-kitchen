@@ -1,4 +1,3 @@
-// src/pages/GalleryPage.js
 import React from 'react';
 import { motion } from 'framer-motion';
 import galleryImage1 from '../assets/hero-1.jpg';

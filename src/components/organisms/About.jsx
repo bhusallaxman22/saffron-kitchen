@@ -1,9 +1,8 @@
-// src/components/About.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import aboutMain from '../assets/hero-1.jpg';
-import aboutSide1 from '../assets/hero-2.jpg';
-import aboutSide2 from '../assets/butter-chicken.jpg';
+import aboutMain from '../../assets/hero-1.jpg';
+import aboutSide1 from '../../assets/hero-2.jpg';
+import aboutSide2 from '../../assets/butter-chicken.jpg';
 
 export default function About() {
   return (
@@ -94,10 +93,7 @@ export default function About() {
               Our philosophy is simple: food should be an adventure. We want to
               transport you to the vibrant streets of India and the serene
               mountain landscapes of Nepal, all while you savor our carefully
-              crafted dishes. Whether you are trying our signature curry,
-              enjoying the warmth of freshly made naan, or indulging in a Nepali
-              momo, Indian Tandoors and Himalayan BBQ, we promise an experience
-              that delights every sense.
+              crafted dishes.
             </p>
             <h3 className="text-2xl font-semibold">Join Us</h3>
             <p>
@@ -105,8 +101,7 @@ export default function About() {
               Kitchen & Bar to be special. Whether you're a connoisseur of
               Indian and Nepali food or new to these cuisines, we invite you to
               explore our menu and discover the love and passion we put into
-              every dish. Come share the joy of food with us—we can’t wait to
-              serve you!
+              every dish.
             </p>
           </motion.div>
         </div>

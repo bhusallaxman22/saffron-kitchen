@@ -1,10 +1,7 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './components/templates/Layout';
 import ScrollToTop from './components/ScrollToTop';
-
-// Page imports
 import HomePage from './pages/HomePage';
 import MenuPage from './pages/MenuPage';
 import AboutPage from './pages/AboutPage';
