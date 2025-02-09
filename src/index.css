@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +10,22 @@
 
 :root {
   --color-saffron: 245 158 11;
+}
+
+@font-face {
+  font-family: 'Eyescript';
+  src: url('/fonts/Eyesome Script.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-eyescript {
+  font-family: 'Eyescript';
+}
+
+.font-cmuscript {
+  font-family: 'Dancing Script', cursive;
+  /* Replace 'Dancing Script' with your CMU Script if available */
 }
 
 body {

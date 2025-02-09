@@ -228,44 +228,44 @@ const menuItems = {
         {
           "name": "Chicken Drumstick | Drums of Heaven",
           "price": 17.99,
-          "img": "",
+          "img": "/menuItems/drum-stick.webp",
           "special": ["spicy"],
           "description": "Crispy, flavorful chicken drumsticks coated in a spicy, tangy glaze."
         },
         {
           "name": "Saffron Grilled Tika",
           "price": 19.99,
-          "img": "",
+          "img": "/menuItems/grilled-tikka.jpg",
           "description": "Tender chicken marinated in aromatic spices, grilled to perfection with a smoky flavor."
         },
         {
           "name": "Saffron Chicken Curry",
           "price": 19.99,
-          "img": "",
+          "img": "/menuItems/chicken-curry.jpg",
           "description": "Succulent chicken cooked in a rich, creamy gravy with a blend of aromatic spices."
         },
         {
           "name": "Paneer Chakori",
           "price": 19.99,
-          "img": "",
+          "img": "/menuItems/paneer-chakori.jpg",
           "description": "Crispy paneer cubes marinated in spices, fried to golden perfection and served with a tangy dip."
         },
         {
           "name": "Paneer Pasanda",
           "price": 24.99,
-          "img": "",
+          "img": "/menuItems/paneer-pasanda.jpg",
           "description": "Soft paneer slices stuffed with a flavorful mixture, cooked in a rich, creamy gravy."
         },
         {
           "name": "Murg Rara",
           "price": 19.99,
-          "img": "",
+          "img": "/menuItems/murg-rara.jpg",
           "description": "Spicy, flavorful chicken cooked in a rich, aromatic gravy with traditional spices."
         },
         {
           "name": "Stuffed Mushroom",
           "price": 14.99,
-          "img": "",
+          "img": "/menuItems/stuffed-mushroom.jpg",
           "description": "Button mushrooms stuffed with a flavorful blend of spiced vegetables and herbs."
         }
       ]

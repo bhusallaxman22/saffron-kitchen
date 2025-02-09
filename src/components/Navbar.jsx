@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
 import { motion } from 'framer-motion';
 
 const navigation = [
@@ -13,6 +12,28 @@ const navigation = [
   { name: 'Gallery', path: '/gallery' },
   { name: 'Catering', path: '/catering' },
 ];
+
+/*  
+  Create a custom BrandLogo component that displays our text‑based logo.
+  - The word "Saffron" is rendered in the Eyescript font and in the color #CC963C.
+  - "Kitchen Bar" is rendered in the CMU Script font.
+  
+  Ensure your global CSS imports these fonts. For example, in your src/index.css you might have:
+  */
+function BrandLogo() {
+  return (
+    <div className="flex flex-col">
+      <span
+        className="text-2xl font-eyescript text-black font-bold tracking-wider">
+        Sa<span style={{ color: "#CC963C" }}>
+          ff</span>ron
+      </span>
+      <span className="text-sm text-gray-700">
+        Kitchen & Bar
+      </span>
+    </div>
+  );
+}
 
 // Custom hamburger icon (three full lines)
 function MobileHamburgerIcon() {
@@ -57,18 +78,13 @@ export default function Navbar() {
       className="fixed inset-x-0 top-0 z-50 bg-white bg-opacity-90 shadow-md"
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        {/* Left side: Logo and Brand */}
+        {/* Left side: Custom Text Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <div className=" bg-gray-400 flex items-center rounded-full p-2">
-              <img
-                src={logo}
-                alt="Saffron Logo"
-                className="h-12 w-auto"
-              />
-            </div>
+            <BrandLogo />
           </Link>
         </div>
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
           {navigation.map((item) => (
@@ -81,6 +97,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
+
         {/* Mobile Menu Button */}
         <div className="flex md:hidden">
           <button
@@ -105,13 +122,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between mb-8">
             <Link to="/">
-              <div className="bg-gray-400 flex items-center rounded-full p-2">
-                <img
-                  src={logo}
-                  alt="Saffron Logo"
-                  className="h-12 w-auto"
-                />
-              </div>
+              <BrandLogo />
             </Link>
             <button
               onClick={() => setMobileMenuOpen(false)}
