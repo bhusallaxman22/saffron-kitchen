@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 
 export default function MealPlan() {
     return (
-        <section id="meal-plan" className="py-20 px-6 text-center bg-gray-900">
+        <section id="meal-plan" className="py-20 px-6 text-center bg-[#f9f9f9] text-gray-900">
             <div className="container mx-auto max-w-2xl">
                 <motion.h2
-                    className="font-extrabold text-5xl text-yellow-400 mb-4 mt-16"
+                    className="font-extrabold text-5xl text-yellow-400 mb-4 mt-16 font-playfair"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -15,7 +15,7 @@ export default function MealPlan() {
                     Meal Plan Subscription
                 </motion.h2>
                 <motion.p
-                    className="text-gray-300 text-xl"
+                    className="text-gray-700 text-xl"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

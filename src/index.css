@@ -19,9 +19,22 @@ body {
   background-color: #f9f9f9;
   overflow-x: hidden;
 }
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
 @layer components {
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
   .font-playfair {
-    font-family: "Mona Sans", serif;
+    font-family: 'Playfair Display', serif;
   }
 
   .text-saffron {

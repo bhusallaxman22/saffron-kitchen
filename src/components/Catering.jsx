@@ -31,17 +31,17 @@ export default function Catering() {
     };
 
     return (
-        <section id="catering" className="py-20 px-6 bg-gray-900 text-white">
+        <section id="catering" className="py-20 px-6 bg-[#f9f9f9] text-gray-900">
             <div className="container mx-auto max-w-xl">
                 <motion.h2
-                    className="font-extrabold text-5xl text-yellow-400 mb-4 mt-16"
+                    className="font-extrabold text-5xl text-yellow-400 mb-4 mt-16 font-playfair"
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
                     Catering
                 </motion.h2>
-                <p className="text-center text-gray-300 text-xl mb-10">
+                <p className="text-center text-gray-700 text-xl mb-10">
                     Let us cater your next event. Please fill out the form below:
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -53,7 +53,7 @@ export default function Catering() {
                             placeholder="Your Name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
                         />
                     </div>
@@ -65,7 +65,7 @@ export default function Catering() {
                             placeholder="Your Email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
                         />
                     </div>
@@ -77,7 +77,7 @@ export default function Catering() {
                             placeholder="Contact Number"
                             value={formData.contactNumber}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
                         />
                     </div>
@@ -88,7 +88,7 @@ export default function Catering() {
                             type="date"
                             value={formData.eventDate}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
                         />
                     </div>
@@ -100,7 +100,7 @@ export default function Catering() {
                             placeholder="Event Location"
                             value={formData.location}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
                         />
                     </div>
@@ -111,7 +111,7 @@ export default function Catering() {
                             placeholder="Tell us more about your event..."
                             value={formData.message}
                             onChange={handleChange}
-                            className="w-full p-4 bg-gray-800 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-white"
+                            className="w-full p-4 bg-gray-200 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                         />
                     </div>
                     <motion.button

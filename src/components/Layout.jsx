@@ -7,7 +7,8 @@ export default function Layout({ children }) {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-gray-900 text-white">
+            {/* Use a creamy white background with dark text and our chosen fonts */}
+            <main className="min-h-screen bg-[#f9f9f9] text-gray-900 font-poppins">
                 {children}
             </main>
             <Footer />

@@ -11,7 +11,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: 'Laxman ',
+    name: 'Laxman',
     text: 'Authentic Nepali dishes that remind me of home. Highly recommended!',
     rating: 5,
   },
@@ -19,11 +19,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-6 relative bg-[url('/testimonial-bg.jpg')] bg-cover bg-fixed">
-      <div className="absolute inset-0 bg-black/60"></div>
+    <section className="py-20 px-6 relative bg-white shadow-md">
+      <div className="absolute inset-0 bg-gray-100 opacity-90"></div>
       <div className="container mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12">
-          <div className="text-white">
+          <div className="text-gray-900">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function Testimonials() {
               className="mb-16"
             >
               <h2 className="font-playfair text-4xl mb-4">What Our Guests Say</h2>
-              <p className="text-gray-300">Hear from our satisfied customers</p>
+              <p className="text-gray-700">Hear from our satisfied customers</p>
             </motion.div>
             <div className="space-y-8">
               {testimonials.map((testimonial, index) => (
@@ -40,7 +40,7 @@ export default function Testimonials() {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="bg-white/10 p-6 rounded-xl backdrop-blur-sm"
+                  className="bg-gray-200 p-6 rounded-xl shadow-lg"
                 >
                   <div className="flex items-center mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -57,7 +57,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-black p-8 rounded-xl shadow-xl h-fit"
+            className="bg-gray-200 p-8 rounded-xl shadow-xl h-fit"
           >
             <h3 className="font-playfair text-2xl mb-6">Opening Hours</h3>
             <div className="space-y-4 mb-8">
