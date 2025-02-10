@@ -12,13 +12,13 @@ const menuItems = {
               "img": "/menuItems/momos.jpg",
               "special": ["vegetarian", "vegan"],
               "description": "Steamed Nepali dumplings filled with seasoned meat or vegetables, served with a tangy dipping sauce.",
+              "protein_options": [
+                { "name": "Vegetarian", "price": 0 },
+                { "name": "Chicken", "price": 1 },
+                { "name": "Buffalo", "price": 3 },
+                { "name": "Beyond Meat", "price": 4 }
+              ],
               "options": {
-                "fillings": [
-                  { "name": "Vegetarian", "price": 0 },
-                  { "name": "Chicken", "price": 1 },
-                  { "name": "Buffalo", "price": 3 },
-                  { "name": "Vegan", "price": 4 }
-                ],
                 "cooking_methods": [
                   { "name": "Steam", "price": 0 },
                   { "name": "Jhol", "price": 0 },
@@ -34,14 +34,14 @@ const menuItems = {
               "name": "Momo Platter",
               "price": 24.99,
               "img": "",
-              "description": "Four different type of Nepali dumplings."
+              "description": "Four varieties of authentic Nepali dumplings."
             },
             {
               "name": "Chowmein",
               "price": 10.99,
               "img": "/menuItems/chowmein.jpg",
               "special": ["vegetarian", "vegan"],
-              "description": "Wok-tossed noodles with seasonal veggies, your choice of meat, and a touch of Himalayan spices.",
+              "description": "Wok-tossed noodles with seasonal veggies and your choice of protein.",
               "protein_options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Paneer", "price": 1 },
@@ -49,7 +49,8 @@ const menuItems = {
                 { "name": "Goat", "price": 2 },
                 { "name": "Shrimp", "price": 3 },
                 { "name": "Buffalo", "price": 3 },
-                { "name": "Combination", "price": 3 }
+                { "name": "Combination", "price": 3 },
+                { "name": "Beyond Meat", "price": 4 }
               ]
             },
             {
@@ -57,7 +58,7 @@ const menuItems = {
               "price": 18.99,
               "img": "",
               "special": ["spicy"],
-              "description": "Dried meat, tossed with various spices, onions, and fresh herbs.",
+              "description": "Dried meat tossed with various spices, onions, and fresh herbs.",
               "protein_options": [
                 { "name": "Goat", "price": 0 },
                 { "name": "Buff", "price": 0 }
@@ -115,7 +116,7 @@ const menuItems = {
               "name": "Appetizer Platter",
               "price": 19.99,
               "img": "",
-              "description": "",
+              "description": "Our exclusive appetizer assortment.",
               "protein_options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 2 }
@@ -145,7 +146,7 @@ const menuItems = {
               "img": "",
               "special": ["vegetarian", "vegan"],
               "description": "Spiced potato cubes sautéed with cumin, mustard seeds, and fresh herbs.",
-              "addons": [
+              "protein_options": [
                 { "name": "Buffalo Sukuti", "price": 3 }
               ]
             },
@@ -160,23 +161,6 @@ const menuItems = {
         {
           "name": "Desi Street Appetizers",
           "items": [
-            {
-              "name": "Chicken Lollipop",
-              "price": 11.99,
-              "img": "",
-              "description": "Crispy, tender chicken drumsticks coated in a tangy, spicy glaze."
-            },
-            {
-              "name": "65",
-              "price": 11.99,
-              "img": "",
-              "special": ["vegetarian"],
-              "description": "Crispy, spiced chicken or paneer marinated in a tangy, flavorful mix and fried to perfection.",
-              "protein_options": [
-                { "name": "Chicken", "price": 0 },
-                { "name": "Paneer", "price": 0 }
-              ]
-            },
             {
               "name": "Gobi Manchurian",
               "price": 10.99,
@@ -207,7 +191,7 @@ const menuItems = {
               "description": "Crispy pastry pockets filled with spiced potatoes and peas, perfect for a savory bite."
             },
             {
-              "name": "Spring Rolls",
+              "name": "Vegetable Spring Rolls",
               "price": 4.99,
               "img": "",
               "description": "Crispy rolls filled with seasoned vegetable, wrapped in a delicate pastry."
@@ -217,6 +201,23 @@ const menuItems = {
               "price": 5.99,
               "img": "",
               "description": "Crispy, golden-brown battered onion rings, seasoned to perfection."
+            },
+            {
+              "name": "Chicken Lollipop",
+              "price": 11.99,
+              "img": "",
+              "description": "Crispy, tender chicken drumsticks coated in a tangy, spicy glaze."
+            },
+            {
+              "name": "65",
+              "price": 11.99,
+              "img": "",
+              "special": ["vegetarian"],
+              "description": "Crispy, spiced chicken or paneer marinated in a tangy, flavorful mix and fried to perfection.",
+              "protein_options": [
+                { "name": "Chicken", "price": 0 },
+                { "name": "Paneer", "price": 0 }
+              ]
             }
           ]
         }
@@ -226,7 +227,8 @@ const menuItems = {
       "category": "Saffron Specials",
       "items": [
         {
-          "name": "Chicken Drumstick | Drums of Heaven",
+          "name": "Chicken Drumstick",
+          "subname": "Drums of Heaven",
           "price": 17.99,
           "img": "/menuItems/drum-stick.webp",
           "special": ["spicy"],
@@ -302,26 +304,21 @@ const menuItems = {
               ]
             },
             {
-              "name": "Lamb Chops",
-              "price": 24.99,
+              "name": "Chicken Tika Kebab",
+              "price": 14.99,
               "img": "",
-              "description": "Succulent lamb chops marinated in aromatic spices and grilled to tender, smoky perfection."
+              "description": "Chicken tikka kebab with garlic, malai, and tikka spices.",
+              "protein_options": [
+                { "name": "Garlic", "price": 0 },
+                { "name": "Malai", "price": 0 },
+                { "name": "Tika", "price": 0 }
+              ]
             },
             {
               "name": "Seekh Kebab",
               "price": 16.99,
               "img": "",
               "description": "Juicy minced meat skewers, seasoned with spices and grilled to a smoky finish.",
-              "protein_options": [
-                { "name": "Chicken", "price": 0 },
-                { "name": "Lamb", "price": 3 }
-              ]
-            },
-            {
-              "name": "Boti Kebab",
-              "price": 16.99,
-              "img": "",
-              "description": "Tender chunks of marinated meat, skewered and grilled with aromatic spices to perfection.",
               "protein_options": [
                 { "name": "Chicken", "price": 0 },
                 { "name": "Lamb", "price": 3 }
@@ -336,6 +333,18 @@ const menuItems = {
                 { "name": "Chicken", "price": 0 },
                 { "name": "Lamb", "price": 3 }
               ]
+            },
+            {
+              "name": "Lamb Boti Kebab",
+              "price": 19.99,
+              "img": "",
+              "description": "Tender chunks of marinated meat, skewered and grilled with aromatic spices to perfection."
+            },
+            {
+              "name": "Lamb Chops",
+              "price": 24.99,
+              "img": "",
+              "description": "Succulent lamb chops marinated in aromatic spices and grilled to tender, smoky perfection."
             }
           ]
         },
@@ -409,26 +418,11 @@ const menuItems = {
               "description": "Cottage cheese cubes in a creamy, spiced spinach gravy."
             },
             {
-              "name": "Makhani",
-              "price": 13.99,
-              "img": "",
-              "special": ["vegetarian"],
-              "description": "A rich, creamy tomato-based curry with butter and aromatic spices.",
-              "protein_options": [
-                { "name": "Daal", "price": 0 },
-                { "name": "Paneer", "price": 1 }
-              ]
-            },
-            {
-              "name": "Kadahi",
+              "name": "Paneer Makhani",
               "price": 14.99,
               "img": "",
-              "description": "A spiced curry cooked in a wok, with meat or vegetables and aromatic herbs.",
-              "protein_options": [
-                { "name": "Paneer", "price": 0 },
-                { "name": "Chicken", "price": 0 },
-                { "name": "Shrimp", "price": 4 }
-              ]
+              "special": ["vegetarian"],
+              "description": "A rich, creamy tomato-based curry with butter and aromatic spices."
             },
             {
               "name": "Mushroom Aloo Matar",
@@ -438,13 +432,7 @@ const menuItems = {
               "description": "A hearty mix of mushrooms, potatoes, and peas in a spiced gravy."
             },
             {
-              "name": "Butter Chicken",
-              "price": 16.99,
-              "img": "",
-              "description": "Tender chicken in a rich, creamy tomato-based sauce with butter and spices."
-            },
-            {
-              "name": "Mixed Veggie Curry",
+              "name": "Mixed Vegetable Curry",
               "price": 13.99,
               "img": "",
               "special": ["vegetarian", "vegan"],
@@ -462,6 +450,45 @@ const menuItems = {
                 { "name": "Lamb", "price": 3 },
                 { "name": "Shrimp", "price": 4 }
               ]
+            },
+            {
+              "name": "Tika Masala",
+              "price": 15.99,
+              "img": "",
+              "description": "Tender meat or vegetables cooked in a rich, creamy tomato-based sauce with aromatic spices.",
+              "protein_options": [
+                { "name": "Paneer", "price": 0 },
+                { "name": "Chicken", "price": 0 },
+                { "name": "Lamb", "price": 3 },
+                { "name": "Shrimp", "price": 4 }
+              ]
+            },
+            {
+              "name": "Korma",
+              "price": 15.99,
+              "img": "",
+              "description": "A creamy, mild curry with tender meat or vegetables, simmered in spices, yogurt, and nuts.",
+              "protein_options": [
+                { "name": "Chicken", "price": 0 },
+                { "name": "Lamb", "price": 3 }
+              ]
+            },
+            {
+              "name": "Kadahi",
+              "price": 14.99,
+              "img": "",
+              "description": "A spiced curry cooked in a wok, with meat or vegetables and aromatic herbs.",
+              "protein_options": [
+                { "name": "Paneer", "price": 0 },
+                { "name": "Chicken", "price": 0 },
+                { "name": "Shrimp", "price": 4 }
+              ]
+            },
+            {
+              "name": "Butter Chicken",
+              "price": 16.99,
+              "img": "",
+              "description": "Tender chicken in a rich, creamy tomato-based sauce with butter and spices."
             },
             {
               "name": "Fish Curry",
@@ -491,11 +518,11 @@ const menuItems = {
               "type_options": [
                 { "name": "Regular", "price": 0 },
                 { "name": "Butter", "price": 0.5 },
-                { "name": "Masala", "price": 0.5 },
+                { "name": "Masala", "price": 2 },
                 { "name": "Bullet", "price": 0.5 },
                 { "name": "Garlic Cilantro", "price": 0.5 },
-                { "name": "Onion Naan", "price": 1 },
-                { "name": "Cheese", "price": 2 },
+                { "name": "Onion Naan", "price": 0.5 },
+                { "name": "Cheese", "price": 3 },
                 { "name": "Keema", "price": 3 }
               ]
             }
@@ -533,7 +560,7 @@ const menuItems = {
               "name": "Fried Rice",
               "price": 12.99,
               "img": "",
-              "special": ["vegetarian"],
+              "special": ["vegetarian", "vegan"],
               "description": "Aromatic rice tossed with seasonal vegetables and choice of meats.",
               "protein_options": [
                 { "name": "Vegetarian", "price": 0 },
@@ -591,6 +618,12 @@ const menuItems = {
           "price": 2.99,
           "img": "",
           "flavors": ["Hot", "Cold"]
+        },
+        {
+          "name": "Soft Drinks",
+          "price": 2.99,
+          "img": "",
+          "flavors": ["Coke", "Fanta", "Sprite"]
         }
       ]
     },
@@ -659,7 +692,7 @@ const menuItems = {
           "price": 8.99,
           "img": "",
           "special": ["vegetarian"],
-          "description": "Mild, creamy tikka masala with tender chicken and served with rice, perfect for kids.",
+          "description": "Mild, creamy tikka masala with tender chicken and served with rice or naan, perfect for kids.",
           "protein_options": [
             { "name": "Paneer", "price": 0 },
             { "name": "Chicken", "price": 2 }
@@ -681,6 +714,8 @@ const menuItems = {
       ]
     }
   ]
-};
+}
+
+
 
 export default menuItems;
