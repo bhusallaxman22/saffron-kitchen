@@ -72,7 +72,7 @@ export default function MenuList() {
 
     return (
         <section className="p-6 bg-[#f9f9f9]">
-            <motion.header className="mb-10 text-center" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.header className="mb-10 text-center" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: '8vh' }}>
                 <Heading className="mb-4">Our Menu</Heading>
                 <MenuSearchBar query={query} onQueryChange={setQuery} />
             </motion.header>

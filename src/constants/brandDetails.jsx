@@ -5,7 +5,7 @@ const brandDetails = {
     primaryColor: '#CC963C',
     contact: {
         address: '5005 S Cooper St Suite 163, Arlington, Texas 76017',
-        phone: '(469) 774-9151',
+        phone: '(817)-962-0615',
         email: 'info@saffronkitchenandbar.com',
     },
     social: {
@@ -13,8 +13,8 @@ const brandDetails = {
         facebook: 'https://facebook.com',
     },
     operatingHours: {
-        mondayToThursday: '11:00 AM - 10:00 PM',
-        fridayToSunday: '11:00 AM - 11:00 PM',
+        wednesdayToMonday: '11:00 AM - 2:30 PM | 5:00 PM - 10:00 PM',
+        tuesday: 'Closed',
     },
 };
 

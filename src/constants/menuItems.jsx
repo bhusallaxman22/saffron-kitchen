@@ -529,7 +529,7 @@ const menuItems = {
               "price": 12.99,
               "special": ["vegetarian"],
               "description": "Aromatic rice and spiced meat or vegetables, slow-cooked together for rich, layered flavors.",
-              "protein_options": [
+              "type_options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 1 },
                 { "name": "Goat", "price": 3 },
@@ -543,7 +543,7 @@ const menuItems = {
               "price": 12.99,
               "special": ["vegetarian", "vegan"],
               "description": "Aromatic rice tossed with seasonal vegetables and choice of meats.",
-              "protein_options": [
+              "type_options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 1 },
                 { "name": "Pork", "price": 2 },
@@ -582,7 +582,7 @@ const menuItems = {
         {
           "name": "Lassi",
           "price": 4.99,
-          "flavors": ["Mango", "Sweet", "Salt"],
+          "type_options": ["Mango", "Sweet", "Salt"],
           //"img": "/menuItems/lassi.jpg"
         },
         {
@@ -598,13 +598,13 @@ const menuItems = {
         {
           "name": "Masala Tea",
           "price": 2.99,
-          "flavors": ["Hot", "Cold"],
+          "type_options": ["Hot", "Cold"],
           //"img": "/menuItems/masala-tea.jpg"
         },
         {
           "name": "Soft Drinks",
           "price": 2.99,
-          "flavors": ["Coke", "Fanta", "Sprite"],
+          "type_options": ["Coke", "Fanta", "Sprite"],
           //"img": "/menuItems/soft-drinks.jpg"
         }
       ]
@@ -674,7 +674,7 @@ const menuItems = {
           "price": 8.99,
           "special_tags": ["vegetarian"],
           "description": "Mild, creamy tikka masala with tender chicken and served with rice or naan, perfect for kids.",
-          "protein_options": [
+          "type_options": [
             { "name": "Paneer", "price": 0 },
             { "name": "Chicken", "price": 2 }
           ],
