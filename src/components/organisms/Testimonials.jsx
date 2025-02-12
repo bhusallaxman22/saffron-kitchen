@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { StarIcon } from '@heroicons/react/solid';
 import { MapIcon, PhoneIcon } from '@heroicons/react/outline';
+import { Heading, Subheading } from '../ui/Typography';
 
 const testimonials = [
     {
@@ -29,8 +30,8 @@ export default function Testimonials() {
                             viewport={{ once: true }}
                             className="mb-16"
                         >
-                            <h2 className="font-playfair text-4xl mb-4">What Our Guests Say</h2>
-                            <p className="text-gray-700">Hear from our satisfied customers</p>
+                            <Heading>What Our Guests Say</Heading>
+                            <Subheading>Hear from our satisfied customers</Subheading>
                         </motion.div>
                         <div className="space-y-8">
                             {testimonials.map((testimonial, index) => (
@@ -58,7 +59,7 @@ export default function Testimonials() {
                         viewport={{ once: true }}
                         className="bg-gray-200 p-8 rounded-xl shadow-xl h-fit"
                     >
-                        <h3 className="font-playfair text-2xl mb-6">Opening Hours</h3>
+                        <Heading>Opening Hours</Heading>
                         <div className="space-y-4 mb-8">
                             <div className="flex justify-between">
                                 <span>Monday - Thursday</span>
@@ -81,7 +82,7 @@ export default function Testimonials() {
                         </div>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
-                            className="w-full bg-yellow-400 text-black py-3 rounded-full mt-8 hover:bg-opacity-90 transition-all"
+                            className="w-full bg-yellow-400 text-black py-3 rounded-full mt-8 hover:bg-opacity-90 transition-all shadow-md"
                         >
                             Make a Reservation
                         </motion.button>

@@ -1,15 +1,18 @@
+// src/components/templates/Layout.js
 import React from 'react';
 import NavbarContainer from '../organisms/NavbarContainer';
-import Footer from '../organisms/Footer'; // Assume you have a Footer component
+import Footer from '../organisms/Footer';
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
     return (
         <>
             <NavbarContainer />
-            <main className="min-h-screen bg-[#f9f9f9] text-gray-900">
+            <main className="min-h-screen">
                 {children}
             </main>
             <Footer />
         </>
     );
-}
+};
+
+export default Layout;

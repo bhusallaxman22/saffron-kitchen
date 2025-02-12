@@ -1,5 +1,5 @@
 import React from 'react';
-import NavItem from './NavItem';
+import NavItem from '../atoms/NavItem';
 import { navItems } from '../../constants/navItems';
 
 export default function MobileMenuList({ onItemClick }) {

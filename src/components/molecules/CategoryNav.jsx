@@ -13,7 +13,10 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
                 <motion.button
                     key={idx}
                     onClick={() => onCategoryChange(cat)}
-                    className={`flex-shrink-0 px-4 py-2 rounded-full border border-blue-500 transition-colors ${activeCategory === cat ? "bg-blue-500 text-white" : "bg-transparent text-blue-900 hover:bg-blue-500 hover:text-white"}`}
+                    className={`flex-shrink-0 px-4 py-2 rounded-full border border-blue-500 transition-colors ${activeCategory === cat
+                        ? "bg-blue-500 text-white"
+                        : "bg-transparent text-blue-900 hover:bg-blue-500 hover:text-white"
+                        }`}
                     initial={{ scale: 0.95 }}
                     animate={{ scale: 1 }}
                     whileHover={{ scale: 1.05 }}

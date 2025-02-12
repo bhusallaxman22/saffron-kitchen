@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BrandLogo from '../../components/atoms/BrandLogo';
-import DesktopNav from '../../components/molecules/DesktopNav';
-import IconButton from '../../components/atoms/IconButton';
-import MobileMenu from '../../components/molecules/MobileMenu';
+import BrandLogo from '../ui/BrandLogo';
+import DesktopNav from './DesktopNav';
+import IconButton from '../ui/IconButton';
+import MobileMenu from './MobileMenu';
 
 export default function Navbar({ isMobileMenuOpen, onOpenMobileMenu, onCloseMobileMenu }) {
     return (

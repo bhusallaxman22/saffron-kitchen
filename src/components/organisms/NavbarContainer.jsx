@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
+import Navbar from '../molecules/Navbar';
 
 export default function NavbarContainer() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);

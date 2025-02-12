@@ -6,7 +6,6 @@ import HomePage from './pages/HomePage';
 import MenuPage from './pages/MenuPage';
 import AboutPage from './pages/AboutPage';
 import MealPlanPage from './pages/MealPlanPage';
-import GalleryPage from './pages/GalleryPage';
 import CateringPage from './pages/CateringPage';
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/meal-plan" element={<MealPlanPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/catering" element={<CateringPage />} />
         </Routes>
       </Layout>

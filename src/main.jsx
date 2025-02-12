@@ -1,9 +1,9 @@
 // src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ParallaxProvider } from 'react-scroll-parallax';
-import { ThemeProvider } from './context/ThemeContext';
 import App from './App';
+import { ParallaxProvider } from 'react-scroll-parallax';
+import { ThemeProvider } from './context/ThemeProvider';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

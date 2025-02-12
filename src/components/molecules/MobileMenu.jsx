@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import IconButton from '../../components/atoms/IconButton';
+import IconButton from '../ui/IconButton';
 import MobileMenuList from './MobileMenuList';
 
 export default function MobileMenu({ onClose }) {

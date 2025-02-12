@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import brandDetails from '../../constants/brandDetails';
 
 export default function Footer() {
     const [newsletter, setNewsletter] = useState({ name: '', email: '' });
@@ -22,27 +23,27 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-bold mb-2">Contact Us</h3>
                         <a
-                            href="https://www.google.com/maps/place/5005+S+Cooper+St+Suite+163,+Arlington,+Texas+76017"
+                            href={`https://www.google.com/maps/place/${encodeURIComponent(brandDetails.contact.address)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-saffron"
                         >
-                            Address: 5005 S Cooper St Suite 163, Arlington, Texas 76017
+                            Address: {brandDetails.contact.address}
                         </a>
                         <br />
-                        <a href="tel:+14697749151" className="hover:text-saffron">
-                            Phone: (469) 774-9151
+                        <a href={`tel:${brandDetails.contact.phone}`} className="hover:text-saffron">
+                            Phone: {brandDetails.contact.phone}
                         </a>
                         <br />
-                        <a href="mailto:info@saffronkitchenandbar.com" className="hover:text-saffron">
-                            Email: info@saffronkitchenandbar.com
+                        <a href={`mailto:${brandDetails.contact.email}`} className="hover:text-saffron">
+                            Email: {brandDetails.contact.email}
                         </a>
                     </div>
                     <div>
                         <h3 className="text-xl font-bold mb-2">Follow Us</h3>
                         <div className="flex gap-4">
                             <a
-                                href="https://www.instagram.com/saffronkitchen_dfw/"
+                                href={brandDetails.social.instagram}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:text-saffron"
@@ -50,7 +51,7 @@ export default function Footer() {
                                 <FaInstagram size={24} />
                             </a>
                             <a
-                                href="https://facebook.com"
+                                href={brandDetails.social.facebook}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:text-saffron"
@@ -92,12 +93,12 @@ export default function Footer() {
                 </div>
                 <div className="text-center border-t border-gray-300 pt-6">
                     <h4 className="text-lg font-bold mb-2">Hours of Operation</h4>
-                    <p>Monday - Thursday: 11:00 AM - 10:00 PM</p>
-                    <p>Friday - Sunday: 11:00 AM - 11:00 PM</p>
+                    <p>Monday - Thursday: {brandDetails.operatingHours.mondayToThursday}</p>
+                    <p>Friday - Sunday: {brandDetails.operatingHours.fridayToSunday}</p>
                 </div>
             </div>
             <div className="text-center mt-6 text-sm text-gray-500">
-                &copy; {new Date().getFullYear()} Saffron Kitchen & Bar. All rights reserved.
+                &copy; {new Date().getFullYear()} {brandDetails.name}. All rights reserved.
             </div>
         </footer>
     );
