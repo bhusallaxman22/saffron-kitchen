@@ -48,7 +48,7 @@ const Catering = () => {
                     transition={{ delay: 0.2 }}
                     viewport={{ once: true }}
                 >
-                    Let us cater your next event. Please fill out the form below:
+                    Let us cater your next event. Please fill out the form below and one of our team members will get back to you soon.:
                 </motion.p>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>

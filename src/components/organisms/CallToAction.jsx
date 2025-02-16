@@ -12,7 +12,7 @@ export default function CallToAction() {
                     animate={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <Heading>Ready to Taste the Best of India & Nepal?</Heading>
+                    <Heading className={"font-poppins"}>Ready to Taste the Best of India & Nepal?</Heading>
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
