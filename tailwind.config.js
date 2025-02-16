@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         saffron: '#F59E0B',
+        customYellow: '#F0B75E',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',

@@ -1,6 +1,14 @@
 {
     "name": "Saffron Kitchen & Bar",
     "short_name": "Saffron",
+    "description": "Saffron Kitchen & Bar offers the best Indian and Nepali cuisine in DFW and Arlington, Texas. Enjoy authentic flavors with a modern twist in a vibrant dining experience.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "lang": "en-US",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -12,9 +20,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "/"
+    ]
 }
