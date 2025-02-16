@@ -9,7 +9,7 @@
 /* Global typography classes */
 @layer components {
   .global-heading {
-    @apply font-poppins text-5xl text-customYellow font-bold;
+    @apply font-playfair text-5xl text-yellow-400 font-bold;
   }
 
   .global-subheading {
