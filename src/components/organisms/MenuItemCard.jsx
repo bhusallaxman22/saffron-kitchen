@@ -14,8 +14,8 @@ export default function MenuItemCard({ item, onViewImage }) {
             {options.map((option, index) => (
                 <span key={index}>
                     {option.name || option}
-                    {option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ""}
-                    {index !== options.length - 1 ? " | " : ""}
+                    {option.price > 0 ? ` (+$${option.price.toFixed(2)})` : ''}
+                    {index !== options.length - 1 ? ' | ' : ''}
                 </span>
             ))}
         </div>
@@ -26,6 +26,8 @@ export default function MenuItemCard({ item, onViewImage }) {
             className="bg-white p-6 rounded-xl shadow hover:shadow-2xl transition mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
+            itemScope
+            itemType="https://schema.org/MenuItem"
         >
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -40,7 +42,7 @@ export default function MenuItemCard({ item, onViewImage }) {
                             </span>
                         </Tippy>
                     )}
-                    <h3 className="text-xl font-semibold text-gray-900 break-words">
+                    <h3 className="text-xl font-semibold text-gray-900 break-words" itemProp="name">
                         {item.name.toUpperCase()}
                     </h3>
                     {item.special && (
@@ -69,10 +71,21 @@ export default function MenuItemCard({ item, onViewImage }) {
                         </div>
                     )}
                 </div>
-                <span className="text-lg text-blue-400">${item.price.toFixed(2)}</span>
+                <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                    <span
+                        className="text-lg text-blue-400"
+                        itemProp="price"
+                        content={item.price.toFixed(2)}
+                    >
+                        ${item.price.toFixed(2)}
+                    </span>
+                    <meta itemProp="priceCurrency" content="USD" />
+                </div>
             </div>
             {item.description && (
-                <p className="mt-2 text-gray-700 text-sm">{item.description}</p>
+                <p className="mt-2 text-gray-700 text-sm" itemProp="description">
+                    {item.description}
+                </p>
             )}
             {item.note && (
                 <p className="mt-1 text-gray-500 text-xs italic">{item.note}</p>
@@ -83,7 +96,7 @@ export default function MenuItemCard({ item, onViewImage }) {
                         onClick={() => setShowOptions((prev) => !prev)}
                         className="flex items-center text-sm text-blue-500 hover:underline focus:outline-none"
                     >
-                        <BiInfoCircle className="mr-1" /> {showOptions ? "Hide Options" : "Show Options"}
+                        <BiInfoCircle className="mr-1" /> {showOptions ? 'Hide Options' : 'Show Options'}
                     </button>
                     <AnimatePresence>
                         {showOptions && (

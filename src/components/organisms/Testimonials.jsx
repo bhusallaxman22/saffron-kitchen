@@ -55,17 +55,23 @@ export default function Testimonials() {
                             ))}
                         </div>
                     </div>
-                    {/* Simplified Opening Hours Card */}
+                    {/* Opening Hours & Contact Info with Microdata */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         className="bg-gray-200 p-8 rounded-xl shadow-xl"
+                        itemScope
+                        itemType="https://schema.org/LocalBusiness"
                     >
                         <h2 className="text-3xl font-bold text-gray-800 mb-4">Opening Hours</h2>
                         <div className="mb-6">
                             <p className="text-lg text-gray-700">
-                                <strong>Wed - Mon:</strong> 11:00 AM - 2:30 PM | 5:00 PM - 10:00 PM
+                                <strong>Wed - Mon:</strong>{' '}
+                                <time itemProp="opens" dateTime="11:00">11:00 AM</time> -{' '}
+                                <time itemProp="closes" dateTime="14:30">2:30 PM</time> |{' '}
+                                <time itemProp="opens" dateTime="17:00">5:00 PM</time> -{' '}
+                                <time itemProp="closes" dateTime="22:00">10:00 PM</time>
                             </p>
                             <p className="text-lg text-gray-700">
                                 <strong>Tuesday:</strong> Closed
@@ -74,11 +80,15 @@ export default function Testimonials() {
                         <div className="mb-6">
                             <div className="flex items-center mb-2">
                                 <PhoneIcon className="h-5 w-5 text-yellow-400 mr-2" />
-                                <span className="text-lg text-gray-700">(817)-962-0615</span>
+                                <span className="text-lg text-gray-700" itemProp="telephone">
+                                    (817)-962-0615
+                                </span>
                             </div>
                             <div className="flex items-center">
                                 <MapIcon className="h-5 w-5 text-yellow-400 mr-2" />
-                                <span className="text-lg text-gray-700">{brandDetails.contact.address}</span>
+                                <span className="text-lg text-gray-700" itemProp="address">
+                                    {brandDetails.contact.address}
+                                </span>
                             </div>
                         </div>
                         <a href="#reservation" className="text-yellow-400 hover:underline">

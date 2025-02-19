@@ -5,6 +5,7 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
     return (
         <motion.nav
             className="relative mb-10 flex gap-4 overflow-x-auto px-4"
+            aria-label="Menu Categories"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -14,8 +15,8 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
                     key={idx}
                     onClick={() => onCategoryChange(cat)}
                     className={`flex-shrink-0 px-4 py-2 rounded-full border border-blue-500 transition-colors ${activeCategory === cat
-                        ? "bg-blue-500 text-white"
-                        : "bg-transparent text-blue-900 hover:bg-blue-500 hover:text-white"
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-transparent text-blue-900 hover:bg-blue-500 hover:text-white'
                         }`}
                     initial={{ scale: 0.95 }}
                     animate={{ scale: 1 }}

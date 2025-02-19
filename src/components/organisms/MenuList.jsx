@@ -34,7 +34,11 @@ export default function MenuList() {
     const renderItems = () => {
         if (query.trim()) {
             if (results.length === 0) {
-                return <motion.p className="text-center text-gray-600">No items found for "{query}".</motion.p>;
+                return (
+                    <motion.p className="text-center text-gray-600">
+                        No items found for "{query}".
+                    </motion.p>
+                );
             }
             return (
                 <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -44,13 +48,28 @@ export default function MenuList() {
                 </motion.div>
             );
         } else {
-            const category = menuData.menu.find(cat => cat.category === activeCategory);
-            if (!category) return <motion.p className="text-center text-gray-600">No items available.</motion.p>;
+            const category = menuData.menu.find((cat) => cat.category === activeCategory);
+            if (!category)
+                return (
+                    <motion.p className="text-center text-gray-600">
+                        No items available.
+                    </motion.p>
+                );
 
             if (category.subcategories) {
                 return category.subcategories.map((subcat, i) => (
-                    <motion.div key={i} className="mb-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 * i }}>
-                        <Heading className="text-2xl mb-4">{subcat.name.toUpperCase()}</Heading>
+                    <motion.div
+                        key={i}
+                        className="mb-10"
+                        itemScope
+                        itemType="https://schema.org/MenuSection"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 * i }}
+                    >
+                        <Heading className="text-2xl mb-4" itemProp="name">
+                            {subcat.name.toUpperCase()}
+                        </Heading>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {sortItems(subcat.items).map((item, idx) => (
                                 <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
@@ -60,7 +79,12 @@ export default function MenuList() {
                 ));
             } else if (category.items) {
                 return (
-                    <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                        itemScope
+                        itemType="https://schema.org/MenuSection"
+                    >
+                        <meta itemProp="name" content={category.category} />
                         {sortItems(category.items).map((item, idx) => (
                             <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
                         ))}
@@ -71,40 +95,66 @@ export default function MenuList() {
     };
 
     return (
-        <section className="p-6 bg-[#f9f9f9]">
-            <motion.header className="mb-10 text-center" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: '8vh' }}>
-                <Heading className="mb-4">Our Menu</Heading>
+        <section className="p-6 bg-[#f9f9f9]" itemScope itemType="https://schema.org/Menu">
+            <motion.header
+                className="mb-10 text-center"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{ marginTop: '8vh' }}
+            >
+                <Heading className="mb-4" itemProp="name">
+                    Our Menu
+                </Heading>
                 <MenuSearchBar query={query} onQueryChange={setQuery} />
             </motion.header>
             {!query.trim() && (
                 <CategoryNav
-                    categories={menuData.menu.map(cat => cat.category)}
+                    categories={menuData.menu.map((cat) => cat.category)}
                     activeCategory={activeCategory}
                     onCategoryChange={setActiveCategory}
                 />
             )}
             <AnimatePresence exitBeforeEnter>
-                <motion.main key={activeCategory + query} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+                <motion.main
+                    key={activeCategory + query}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                >
                     {renderItems()}
                 </motion.main>
             </AnimatePresence>
             {modalImg && (
                 <motion.div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
-                    onClick={e => { if (e.target === e.currentTarget) setModalImg(null); }}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setModalImg(null);
+                    }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                 >
                     <div className="relative">
-                        <img src={modalImg} alt="Menu Item" className="max-w-full max-h-screen rounded-lg" />
+                        <img
+                            src={modalImg}
+                            alt="Menu Item"
+                            className="max-w-full max-h-screen rounded-lg"
+                            itemProp="image"
+                        />
                         <button
                             onClick={() => setModalImg(null)}
                             className="absolute top-2 right-2 text-white bg-gray-700 p-1 rounded-full hover:bg-gray-600"
                             title="Close"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>

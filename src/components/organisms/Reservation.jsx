@@ -23,8 +23,17 @@ const Reservation = () => {
             <div className="container mx-auto max-w-2xl">
                 <Heading>Make a Reservation</Heading>
                 <p className="text-gray-700 text-xl mb-2">{availability}</p>
-                <Subheading>Reserve your table for a futuristic dining experience.</Subheading>
-                <form className="space-y-6 mt-8">
+                <Subheading>
+                    Reserve your table for a futuristic dining experience.
+                </Subheading>
+                {/* Wrap the form with FoodEstablishmentReservation schema */}
+                <form
+                    className="space-y-6 mt-8"
+                    itemScope
+                    itemType="https://schema.org/FoodEstablishmentReservation"
+                >
+                    {/* Optional meta for the restaurant name */}
+                    <meta itemProp="reservationFor" content="Saffron Kitchen & Bar" />
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                             Name
@@ -36,6 +45,7 @@ const Reservation = () => {
                             aria-label="Name"
                             className="mt-1 w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
+                            itemProp="underName" // person making the reservation
                         />
                     </div>
                     <div>
@@ -49,6 +59,7 @@ const Reservation = () => {
                             aria-label="Email"
                             className="mt-1 w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                             required
+                            itemProp="email"
                         />
                     </div>
                     <div className="flex space-x-4">
@@ -62,6 +73,7 @@ const Reservation = () => {
                                 aria-label="Date"
                                 className="mt-1 w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                                 required
+                                itemProp="startTime"
                             />
                         </div>
                         <div className="w-1/2">
@@ -74,6 +86,7 @@ const Reservation = () => {
                                 aria-label="Time"
                                 className="mt-1 w-full p-4 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition transform focus:scale-105 text-gray-900"
                                 required
+                                itemProp="startTime"
                             />
                         </div>
                     </div>
