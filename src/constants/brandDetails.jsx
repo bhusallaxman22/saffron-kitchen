@@ -10,7 +10,7 @@ const brandDetails = {
     },
     social: {
         instagram: 'https://www.instagram.com/saffronkitchen_dfw/',
-        facebook: 'https://facebook.com',
+        facebook: 'https://www.facebook.com/profile.php?id=61570948842132',
     },
     operatingHours: {
         wednesdayToMonday: '11:00 AM - 2:30 PM | 5:00 PM - 10:00 PM',
