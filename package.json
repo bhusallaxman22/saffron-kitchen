@@ -29,6 +29,7 @@
     "react-router-dom": "^7.1.5",
     "react-scroll": "^1.9.2",
     "react-scroll-parallax": "^3.4.5",
+    "react-toastify": "^11.0.3",
     "three": "^0.173.0",
     "tippy.js": "^6.3.7"
   },
