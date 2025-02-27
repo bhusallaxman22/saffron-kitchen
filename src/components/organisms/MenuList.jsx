@@ -10,21 +10,28 @@ import { Heading } from '../ui/Typography';
 
 export default function MenuList() {
     const [query, setQuery] = useState('');
-    const [activeCategory, setActiveCategory] = useState(menuData.menu[0]?.category || '');
+    const [activeCategory, setActiveCategory] = useState(
+        menuData.menu[0]?.category || ''
+    );
     const [modalImg, setModalImg] = useState(null);
 
     // Flatten the menu for search.
     const allItems = flattenMenu(menuData.menu);
 
     // Fuse search hook configuration.
-    const { search } = useFuseSearch(allItems, { keys: ['name', 'description'], threshold: 0.4 });
+    const { search } = useFuseSearch(allItems, {
+        keys: ['name', 'description'],
+        threshold: 0.4,
+    });
     const results = query.trim() ? search(query) : null;
 
     // Sort items: vegetarian items first.
     const sortItems = (items) => {
         return items.sort((a, b) => {
-            const aIsVeg = a.special?.includes('vegetarian') || a.special?.includes('vegan');
-            const bIsVeg = b.special?.includes('vegetarian') || b.special?.includes('vegan');
+            const aIsVeg =
+                a.special?.includes('vegetarian') || a.special?.includes('vegan');
+            const bIsVeg =
+                b.special?.includes('vegetarian') || b.special?.includes('vegan');
             if (aIsVeg && !bIsVeg) return -1;
             if (!aIsVeg && bIsVeg) return 1;
             return 0;
@@ -48,7 +55,9 @@ export default function MenuList() {
                 </motion.div>
             );
         } else {
-            const category = menuData.menu.find((cat) => cat.category === activeCategory);
+            const category = menuData.menu.find(
+                (cat) => cat.category === activeCategory
+            );
             if (!category)
                 return (
                     <motion.p className="text-center text-gray-600">
@@ -79,23 +88,41 @@ export default function MenuList() {
                 ));
             } else if (category.items) {
                 return (
-                    <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                        itemScope
-                        itemType="https://schema.org/MenuSection"
-                    >
-                        <meta itemProp="name" content={category.category} />
-                        {sortItems(category.items).map((item, idx) => (
-                            <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
-                        ))}
-                    </motion.div>
+                    <>
+                        {activeCategory === 'Drinks' && (
+                            <motion.div
+                                className="mt-10  p-6 bg-gradient-to-r  mb-10 from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-2xl text-center text-xl text-gray-800 font-bold"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                🚨 Waiting for the mixed beverage license to publish our cocktail menu. 🚨
+                            </motion.div>
+                        )}
+                        <motion.div
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                            itemScope
+                            itemType="https://schema.org/MenuSection"
+                        >
+                            <meta itemProp="name" content={category.category} />
+                            {sortItems(category.items).map((item, idx) => (
+                                <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
+                            ))}
+                        </motion.div>
+
+                    </>
                 );
             }
         }
     };
 
     return (
-        <section className="p-6 bg-[#f9f9f9]" itemScope itemType="https://schema.org/Menu">
+        <section
+            className="p-6 bg-[#f9f9f9]"
+            itemScope
+            itemType="https://schema.org/Menu"
+        >
             <motion.header
                 className="mb-10 text-center"
                 initial={{ opacity: 0, y: -20 }}
@@ -155,7 +182,12 @@ export default function MenuList() {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
                             </svg>
                         </button>
                     </div>
