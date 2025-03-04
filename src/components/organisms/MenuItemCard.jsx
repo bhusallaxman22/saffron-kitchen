@@ -39,60 +39,64 @@ export default function MenuItemCard({ item, onViewImage }) {
             itemScope
             itemType="https://schema.org/MenuItem"
         >
-            {/*  TODO: Uncomment after image is available. Header Section with Background Image */}
-            {/* <div
-            className={`relative h-48 md:h-56 bg-cover bg-center`}
-            style={{
-                backgroundImage: `url(${item.img || 'https://via.placeholder.com/400x300?text=No+Image'})`
-            }}
-            > */}
-            {/* TODO: add absolute in className */}
-            <div className=" inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-            {/* TODO: add absolute in className */}
-            <div className=" inset-0 flex flex-col justify-end p-4">
-                {/* TODO: change to text-black after image */}
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                        <h3 className="text-2xl text-black font-extrabold" itemProp="name">
-                            {item.name}
-                        </h3>
-                        <div className="flex items-center ml-3 space-x-2">
-                            {item.special?.includes('vegan') && (
-                                <Tippy content="Vegan">
-                                    <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
-                                        <VeganIcon className="mr-1" size={14} />
-                                    </div>
-                                </Tippy>
-                            )}
-                            {item.special?.includes('vegetarian') && (
-                                <Tippy content="Vegetarian">
-                                    <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
-                                        <VegetarianIcon className="mr-1" size={14} />
-                                    </div>
-                                </Tippy>
-                            )}
-                            {item.special?.includes('spicy') && (
-                                <Tippy content="Spicy">
-                                    <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
-                                        <SpicyIcon className="mr-1" size={14} />
-                                    </div>
-                                </Tippy>
-                            )}
+            {/* Header Section with Background Image */}
+            <div className="relative h-48 md:h-56">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `url(${item.img || 'https://via.placeholder.com/400x300?text=No+Image'})`
+                    }}
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                {/* Text & Icon Container */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <h3 className="text-2xl text-white font-extrabold" itemProp="name">
+                                {item.name}
+                            </h3>
+                            <div className="flex items-center ml-3 space-x-2">
+                                {item.special?.includes('vegan') && (
+                                    <Tippy content="Vegan">
+                                        <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
+                                            <VeganIcon className="mr-1" size={14} />
+                                        </div>
+                                    </Tippy>
+                                )}
+                                {item.special?.includes('vegetarian') && (
+                                    <Tippy content="Vegetarian">
+                                        <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
+                                            <VegetarianIcon className="mr-1" size={14} />
+                                        </div>
+                                    </Tippy>
+                                )}
+                                {item.special?.includes('spicy') && (
+                                    <Tippy content="Spicy">
+                                        <div className="flex items-center text-white rounded-full px-2 py-1 text-xs">
+                                            <SpicyIcon className="mr-1" size={14} />
+                                        </div>
+                                    </Tippy>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                    <div className="absolute top-2 right-2">
-                        <Tippy content="View Image">
-                            <button
-                                onClick={() => onViewImage(item.img)}
-                                className="bg-white bg-opacity-80 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
-                            >
-                                <BiCamera className="text-blue-500" size={20} />
-                            </button>
-                        </Tippy>
+                        {/* Conditionally render the camera icon only if item.img exists */}
+                        {item.img && (
+                            <div className="absolute top-2 right-2">
+                                <Tippy content="View Image">
+                                    <button
+                                        onClick={() => onViewImage(item.img)}
+                                        className="bg-white bg-opacity-80 p-2 rounded-full shadow-md hover:bg-opacity-100 transition"
+                                    >
+                                        <BiCamera className="text-blue-500" size={20} />
+                                    </button>
+                                </Tippy>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-            {/* </div> */}
 
             {/* Details Section */}
             <div className="p-4 md:p-6">

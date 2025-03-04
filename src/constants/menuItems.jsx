@@ -14,7 +14,7 @@ const menuItems = {
           "name": "Saffron Grilled Tika",
           "price": 19.99,
           "description": "Tender chicken marinated in aromatic spices, grilled to perfection with a smoky flavor.",
-          //"img": "/menuItems/grilled-tikka.jpg"
+          "img": "/menuItems/SAFFRON_GRILLED_TIKA.jpg"
         },
         {
           "name": "Saffron Curry",
@@ -107,7 +107,7 @@ const menuItems = {
                   { "name": "Tandoor", "price": 5 }
                 ]
               },
-              //"img": "/menuItems/momo.jpg"
+              "img": "/menuItems/MOMO.jpg"
             },
             {
               "name": "Momo Platter",
@@ -130,7 +130,7 @@ const menuItems = {
                 { "name": "Combination", "price": 3 },
                 { "name": "Beyond Meat", "price": 4 }
               ],
-              //"img": "/menuItems/chowmein.jpg"
+              "img": "/menuItems/CHOWMEIN.jpg"
             },
             {
               "name": "Sukuti Sandeko",
@@ -228,13 +228,13 @@ const menuItems = {
               "name": "Vegetable Samosa",
               "price": 6.99,
               "description": "Crispy pastry pockets filled with spiced potatoes and peas, perfect for a savory bite.",
-              //"img": "/menuItems/vegetable-samosa.jpg"
+              "img": "/menuItems/VEGETABLE_SAMOSA.jpg"
             },
             {
               "name": "Vegetable Spring Rolls",
               "price": 4.99,
               "description": "Crispy rolls filled with seasoned vegetable, wrapped in a delicate pastry.",
-              //"img": "/menuItems/vegetable-spring-rolls.jpg"
+              "img": "/menuItems/SPRING_ROLLS.jpg"
             },
             {
               "name": "Onion Rings",
@@ -246,7 +246,7 @@ const menuItems = {
               "name": "Chicken Lollipop",
               "price": 11.99,
               "description": "Crispy, tender chicken drumsticks coated in a tangy, spicy glaze.",
-              //"img": "/menuItems/chicken-lollipop.jpg"
+              "img": "/menuItems/CHICKEN_LOLLIPOP.jpg"
             },
             {
               "name": "65",
@@ -275,7 +275,7 @@ const menuItems = {
             { "name": "Pork", "price": 2 },
             { "name": "Goat", "price": 3 }
           ],
-          //"img": "/menuItems/himalayan-sekuwa.jpg"
+          "img": "/menuItems/PORK_SEKUWA.jpg"
         },
         {
           "name": "Tandoori",
@@ -289,14 +289,14 @@ const menuItems = {
             { "name": "Shrimp", "price": 4 },
             { "name": "Combination", "price": 4 }
           ],
-          //"img": "/menuItems/tandoori.jpg"
+          "img": "/menuItems/TANDOORI_CHICKEN.jpg"
         },
         {
           "name": "Chicken Tika Kebab",
           "price": 14.99,
           "description": "Marinated chicken tikka grilled to perfection.",
           "variants": ["Garlic", "Malai", "Tika"],
-          //"img": "/menuItems/chicken-tika-kebab.jpg"
+          "img": "/menuItems/CHICKEN_TIKA_KEBAB.jpg"
         },
         {
           "name": "Seekh Kebab",
@@ -306,7 +306,7 @@ const menuItems = {
             { "name": "Chicken", "price": 0 },
             { "name": "Lamb", "price": 3 }
           ],
-          //"img": "/menuItems/seekh-kebab.jpg"
+          "img": "/menuItems/SEEKH_KEBAB.jpg"
         },
         {
           "name": "Sizzler",
@@ -348,7 +348,7 @@ const menuItems = {
                 { "name": "Chicken", "price": 1 },
                 { "name": "Goat", "price": 3 }
               ],
-              //"img": "/menuItems/himalayan-thali.jpg"
+              "img": "/menuItems/HIMALAYAN_THALI.jpg"
             },
             {
               "name": "Indian Thali",
@@ -371,14 +371,14 @@ const menuItems = {
               "price": 15.99,
               "special": ["vegetarian", "vegan"],
               "description": "Yellow lentils cooked with spices and topped with a fragrant ghee tempering.",
-              //"img": "/menuItems/yellow-daal-tadka.jpg"
+              "img": "/menuItems/YELLO_DAAL_TADKA.jpg"
             },
             {
               "name": "Palak Paneer",
               "price": 16.99,
               "special": ["vegetarian"],
               "description": "Cottage cheese cubes in a creamy, spiced spinach gravy.",
-              //"img": "/menuItems/palak-paneer.jpg"
+              "img": "/menuItems/PALAK_PANEER.jpg"
             },
             {
               "name": "Daal Makhani",
@@ -506,7 +506,7 @@ const menuItems = {
                 { "name": "Cheese", "price": 3 },
                 { "name": "Keema", "price": 3 }
               ],
-              //"img": "/menuItems/naan.jpg"
+              "img": "/menuItems/GARLIC_NAAN.jpg"
             }
           ]
         },
@@ -536,7 +536,7 @@ const menuItems = {
                 { "name": "Lamb", "price": 3 },
                 { "name": "Shrimp", "price": 4 }
               ],
-              //"img": "/menuItems/briyani.jpg"
+              "img": "/menuItems/BRIYAN.jpg"
             },
             {
               "name": "Fried Rice",
@@ -567,7 +567,7 @@ const menuItems = {
         {
           "name": "Rasmalai",
           "price": 4.99,
-          //"img": "/menuItems/rasmalai.jpg"
+          "img": "/menuItems/RASMALAI.jpg"
         },
         {
           "name": "Gulab Jamon",
@@ -637,7 +637,7 @@ const menuItems = {
               "name": "Muligatwan Soup",
               "price": 4.99,
               "description": "A flavorful, spiced Indian soup with lentils, vegetables, and a hint of curry.",
-              //"img": "/menuItems/muligatwan-soup.jpg"
+              "img": "/menuItems/MULIGATWAN_SOUP.jpg"
             },
             {
               "name": "Veggie Soup",
