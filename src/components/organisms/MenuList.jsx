@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import MenuItemCard from './MenuItemCard';
 import MenuSearchBar from '../molecules/MenuSearchBar';
 import CategoryNav from '../molecules/CategoryNav';
@@ -10,112 +10,77 @@ import { Heading } from '../ui/Typography';
 
 export default function MenuList() {
     const [query, setQuery] = useState('');
-    const [activeCategory, setActiveCategory] = useState(
-        menuData.menu[0]?.category || ''
-    );
+    const [activeCategory, setActiveCategory] = useState(menuData.menu[0]?.category || '');
     const [modalImg, setModalImg] = useState(null);
+    const categories = menuData.menu.map((cat) => cat.category);
+    const containerRef = useRef(null);
+    const categoryRefs = useRef({});
+    const isManualScroll = useRef(false);
 
-    // Flatten the menu for search.
     const allItems = flattenMenu(menuData.menu);
-
-    // Fuse search hook configuration.
     const { search } = useFuseSearch(allItems, {
         keys: ['name', 'description'],
         threshold: 0.4,
     });
     const results = query.trim() ? search(query) : null;
 
-    // Sort items: vegetarian items first.
     const sortItems = (items) => {
         return items.sort((a, b) => {
-            const aIsVeg =
-                a.special?.includes('vegetarian') || a.special?.includes('vegan');
-            const bIsVeg =
-                b.special?.includes('vegetarian') || b.special?.includes('vegan');
-            if (aIsVeg && !bIsVeg) return -1;
-            if (!aIsVeg && bIsVeg) return 1;
-            return 0;
+            const aIsVeg = a.special?.includes('vegetarian') || a.special?.includes('vegan');
+            const bIsVeg = b.special?.includes('vegetarian') || b.special?.includes('vegan');
+            return aIsVeg && !bIsVeg ? -1 : !aIsVeg && bIsVeg ? 1 : 0;
         });
     };
 
-    const renderItems = () => {
-        if (query.trim()) {
-            if (results.length === 0) {
-                return (
-                    <motion.p className="text-center text-gray-600">
-                        No items found for "{query}".
-                    </motion.p>
-                );
-            }
-            return (
-                <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sortItems(results).map((item, idx) => (
-                        <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
-                    ))}
-                </motion.div>
-            );
-        } else {
-            const category = menuData.menu.find(
-                (cat) => cat.category === activeCategory
-            );
-            if (!category)
-                return (
-                    <motion.p className="text-center text-gray-600">
-                        No items available.
-                    </motion.p>
-                );
+    const STICKY_NAV_HEIGHT = 20; // Adjust this value to your sticky nav's height
 
-            if (category.subcategories) {
-                return category.subcategories.map((subcat, i) => (
-                    <motion.div
-                        key={i}
-                        className="mb-10"
-                        itemScope
-                        itemType="https://schema.org/MenuSection"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 * i }}
-                    >
-                        <Heading className="text-2xl mb-4" itemProp="name">
-                            {subcat.name.toUpperCase()}
-                        </Heading>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {sortItems(subcat.items).map((item, idx) => (
-                                <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
-                            ))}
-                        </div>
-                    </motion.div>
-                ));
-            } else if (category.items) {
-                return (
-                    <>
-                        {activeCategory === 'Drinks' && (
-                            <motion.div
-                                className="mt-10  p-6 bg-gradient-to-r  mb-10 from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-2xl text-center text-xl text-gray-800 font-bold"
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                🚨 Waiting for the mixed beverage license to publish our cocktail menu. 🚨
-                            </motion.div>
-                        )}
-                        <motion.div
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                            itemScope
-                            itemType="https://schema.org/MenuSection"
-                        >
-                            <meta itemProp="name" content={category.category} />
-                            {sortItems(category.items).map((item, idx) => (
-                                <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
-                            ))}
-                        </motion.div>
+    const handleCategoryChange = (category) => {
+        if (activeCategory === category) return;
+        isManualScroll.current = true;
+        setActiveCategory(category);
 
-                    </>
-                );
-            }
+        const section = categoryRefs.current[category];
+        if (section && containerRef.current) {
+            const container = containerRef.current;
+            // Calculate the target scroll position relative to container
+            const offsetTop = section.offsetTop;
+            container.scrollTo({
+                top: offsetTop - STICKY_NAV_HEIGHT,
+                behavior: 'smooth'
+            });
         }
+
+        // Reset manual scroll flag after transition
+        setTimeout(() => {
+            isManualScroll.current = false;
+        }, 1000);
     };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (isManualScroll.current) return;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const category = entry.target.dataset.category;
+                        setActiveCategory(category);
+                    }
+                });
+            },
+            {
+                root: containerRef.current,
+                threshold: 0.1,
+                // Adjust rootMargin based on your sticky nav height
+                rootMargin: `-${STICKY_NAV_HEIGHT}px 0px 0px 0px`
+            }
+        );
+
+        // Observe all category sections
+        Object.values(categoryRefs.current).forEach(el => {
+            if (el) observer.observe(el);
+        });
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <section
@@ -134,61 +99,96 @@ export default function MenuList() {
                 </Heading>
                 <MenuSearchBar query={query} onQueryChange={setQuery} />
             </motion.header>
+
+            {/* Sticky Category Navigation – placed outside the main scrollable section */}
             {!query.trim() && (
-                <CategoryNav
-                    categories={menuData.menu.map((cat) => cat.category)}
-                    activeCategory={activeCategory}
-                    onCategoryChange={setActiveCategory}
-                />
+                <div className="sticky top-0 z-30 bg-[#f9f9f9] shadow-sm">
+                    <CategoryNav
+                        categories={categories}
+                        activeCategory={activeCategory}
+                        onCategoryChange={handleCategoryChange}
+                    />
+                </div>
             )}
-            <AnimatePresence exitBeforeEnter>
-                <motion.main
-                    key={activeCategory + query}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {renderItems()}
-                </motion.main>
-            </AnimatePresence>
+
+            {/* Main Scrollable Content */}
+            <section className="h-[calc(100vh-8rem)] overflow-y-auto pt-4" ref={containerRef}>
+                {query.trim() ? (
+                    results?.length ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {sortItems(results).map((item, idx) => (
+                                <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-600">
+                            No items found for "{query}"
+                        </p>
+                    )
+                ) : (
+                    menuData.menu.map((category) => (
+                        <section
+                            key={category.category}
+                            ref={el => (categoryRefs.current[category.category] = el)}
+                            data-category={category.category}
+                            // Adjust scroll margin so section headings aren’t hidden by the sticky nav
+                            className="py-8 scroll-mt-16"
+                        >
+                            <Heading className="text-3xl text-blue-900 font-bold mb-6">
+                                {category.category}
+                            </Heading>
+
+                            {category.subcategories?.map((subcat, i) => (
+                                <div key={i} className="mb-8">
+                                    <Heading className="text-2xl text-gray-700 font-semibold mb-4">
+                                        {subcat.name.toUpperCase()}
+                                    </Heading>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {sortItems(subcat.items).map((item, idx) => (
+                                            <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+
+                            {category.items && (
+                                <>
+                                    {category.category === 'Drinks' && (
+                                        <motion.div className="mb-8 p-6 bg-gradient-to-r from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-xl text-center text-xl text-gray-800 font-bold">
+                                            🚨 Waiting for mixed beverage license 🚨
+                                        </motion.div>
+                                    )}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {sortItems(category.items).map((item, idx) => (
+                                            <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </section>
+                    ))
+                )}
+            </section>
+
+            {/* Modal for viewing images */}
             {modalImg && (
                 <motion.div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
-                    onClick={(e) => {
-                        if (e.target === e.currentTarget) setModalImg(null);
-                    }}
+                    onClick={(e) => e.target === e.currentTarget && setModalImg(null)}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
                 >
-                    <div className="relative">
+                    <div className="relative max-w-4xl w-full">
                         <img
                             src={modalImg}
                             alt="Menu Item"
-                            className="max-w-full max-h-screen rounded-lg"
-                            itemProp="image"
+                            className="w-full h-full object-contain rounded-lg"
                         />
                         <button
                             onClick={() => setModalImg(null)}
-                            className="absolute top-2 right-2 text-white bg-gray-700 p-1 rounded-full hover:bg-gray-600"
-                            title="Close"
+                            className="absolute top-4 right-4 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-700"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
+                            ✕
                         </button>
                     </div>
                 </motion.div>

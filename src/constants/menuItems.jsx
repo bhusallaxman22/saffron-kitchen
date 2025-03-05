@@ -470,7 +470,7 @@ const menuItems = {
               "name": "Butter Chicken",
               "price": 16.99,
               "description": "Tender chicken in a rich, creamy tomato-based sauce with butter and spices.",
-              //"img": "/menuItems/butter-chicken.jpg"
+              "img": "/menuItems/Butter_Chicken.jpg"
             },
             {
               "name": "Fish Curry",

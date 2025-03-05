@@ -33,7 +33,7 @@ export default function MenuItemCard({ item, onViewImage }) {
 
     return (
         <motion.div
-            className="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl hover:scale-105"
+            className="bg-white rounded-2xl p-3 shadow-xl overflow-hidden transform transition duration-300 hover:shadow-2xl hover:scale-105"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             itemScope
@@ -43,9 +43,9 @@ export default function MenuItemCard({ item, onViewImage }) {
             <div className="relative h-48 md:h-56">
                 {/* Background Image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center"
+                    className={`absolute inset-0 bg-cover bg-center`}
                     style={{
-                        backgroundImage: `url(${item.img || 'https://via.placeholder.com/400x300?text=No+Image'})`
+                        backgroundImage: `url(${item.img || '/menuItems/placeholder.png'})`,
                     }}
                 />
                 {/* Gradient Overlay */}
