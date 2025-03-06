@@ -32,8 +32,8 @@ export default function MenuList() {
         });
     };
 
-    const STICKY_NAV_HEIGHT = 20; // Adjust this value to your sticky nav's height
 
+    // Update the handleCategoryChange function
     const handleCategoryChange = (category) => {
         if (activeCategory === category) return;
         isManualScroll.current = true;
@@ -42,10 +42,12 @@ export default function MenuList() {
         const section = categoryRefs.current[category];
         if (section && containerRef.current) {
             const container = containerRef.current;
-            // Calculate the target scroll position relative to container
+            // Get scroll margin from CSS
+            const scrollMarginTop = parseInt(window.getComputedStyle(section).scrollMarginTop, 10) || 0;
             const offsetTop = section.offsetTop;
             container.scrollTo({
-                top: offsetTop - STICKY_NAV_HEIGHT,
+                // Account for both sticky nav height and scroll margin
+                top: offsetTop - STICKY_NAV_HEIGHT - scrollMarginTop,
                 behavior: 'smooth'
             });
         }
@@ -56,6 +58,8 @@ export default function MenuList() {
         }, 1000);
     };
 
+    // Update STICKY_NAV_HEIGHT to match actual nav height (example value)
+    const STICKY_NAV_HEIGHT = 210; // 4rem (scroll-mt-16) = 64px
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -139,7 +143,7 @@ export default function MenuList() {
                             </Heading>
 
                             {category.subcategories?.map((subcat, i) => (
-                                <div key={i} className="mb-8">
+                                <div key={i} className="mb-4">
                                     <Heading className="text-2xl text-gray-700 font-semibold mb-4">
                                         {subcat.name.toUpperCase()}
                                     </Heading>

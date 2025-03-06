@@ -124,3 +124,22 @@ body {
     backface-visibility: hidden;
   }
 }
+
+/* Ensure parent container constrains width */
+.sticky-nav-container {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}

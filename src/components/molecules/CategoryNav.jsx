@@ -7,10 +7,20 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
 
     useEffect(() => {
         if (activeButtonRef.current && navRef.current) {
-            activeButtonRef.current.scrollIntoView({
-                behavior: 'smooth',
-                inline: 'center',
-                block: 'nearest'
+            const nav = navRef.current;
+            const button = activeButtonRef.current;
+
+            // Calculate positions relative to the navigation container
+            const buttonLeft = button.offsetLeft;
+            const buttonWidth = button.offsetWidth;
+            const navWidth = nav.offsetWidth;
+
+            // Calculate scroll position to center the button
+            const scrollPosition = buttonLeft - (navWidth / 2) + (buttonWidth / 2);
+
+            nav.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
             });
         }
     }, [activeCategory]);
@@ -18,7 +28,7 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
     return (
         <motion.nav
             ref={navRef}
-            className="relative flex gap-4 mt-5 mb-3 overflow-x-auto px-4 hide-scrollbar"
+            className="relative flex gap-4 mt-5 mb-1 overflow-x-auto px-4 hide-scrollbar w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -42,7 +52,7 @@ export default function CategoryNav({ categories, activeCategory, onCategoryChan
                     {cat}
                 </motion.button>
             ))}
-            <div className="absolute right-0 top-0 h-full w-12 pointer-events-none bg-gradient-to-l from-transparent to-[#f9f9f9]" />
+            <div className="absolute right-0 top-0 w-12 pointer-events-none bg-gradient-to-l from-transparent to-[#f9f9f9]" />
         </motion.nav>
     );
 }
