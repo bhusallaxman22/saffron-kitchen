@@ -19,7 +19,7 @@ export default function MenuList() {
 
     const allItems = flattenMenu(menuData.menu);
     const { search } = useFuseSearch(allItems, {
-        keys: ['name', 'description'],
+        keys: ['name', 'special', 'description', 'category', 'subcategory'],
         threshold: 0.4,
     });
     const results = query.trim() ? search(query) : null;
@@ -42,17 +42,13 @@ export default function MenuList() {
         const section = categoryRefs.current[category];
         if (section && containerRef.current) {
             const container = containerRef.current;
-            // Get scroll margin from CSS
             const scrollMarginTop = parseInt(window.getComputedStyle(section).scrollMarginTop, 10) || 0;
-            const offsetTop = section.offsetTop;
             container.scrollTo({
-                // Account for both sticky nav height and scroll margin
-                top: offsetTop - STICKY_NAV_HEIGHT - scrollMarginTop,
+                top: section.offsetTop - STICKY_NAV_HEIGHT - scrollMarginTop,
                 behavior: 'smooth'
             });
         }
 
-        // Reset manual scroll flag after transition
         setTimeout(() => {
             isManualScroll.current = false;
         }, 1000);
@@ -88,17 +84,17 @@ export default function MenuList() {
 
     return (
         <section
-            className="p-6 bg-[#f9f9f9]"
+            className="p-3 bg-[#f9f9f9]"
             itemScope
             itemType="https://schema.org/Menu"
         >
             <motion.header
-                className="mb-10 text-center"
+                className="mb-5 text-center"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                style={{ marginTop: '8vh' }}
+                style={{ marginTop: '4vh' }}
             >
-                <Heading className="mb-4" itemProp="name">
+                <Heading className="mb-2" itemProp="name">
                     Our Menu
                 </Heading>
                 <MenuSearchBar query={query} onQueryChange={setQuery} />
@@ -136,17 +132,17 @@ export default function MenuList() {
                             ref={el => (categoryRefs.current[category.category] = el)}
                             data-category={category.category}
                             // Adjust scroll margin so section headings aren’t hidden by the sticky nav
-                            className="py-8 scroll-mt-16"
+                            className="py-4 scroll-mt-8"
                         >
-                            <Heading className="text-3xl text-blue-900 font-bold mb-6">
-                                {category.category}
-                            </Heading>
+                            <h3 className="mb-3 text-xl font-bold text-slate-800 border-l-4 border-pink-500 pl-4">
+                                {category.category.toUpperCase()}
+                            </h3>
 
                             {category.subcategories?.map((subcat, i) => (
-                                <div key={i} className="mb-4">
-                                    <Heading className="text-2xl text-gray-700 font-semibold mb-4">
+                                <div key={i} className="mb-2">
+                                    <h6 className="text-md text-gray-700 font-semibold mb-2">
                                         {subcat.name.toUpperCase()}
-                                    </Heading>
+                                    </h6>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {sortItems(subcat.items).map((item, idx) => (
                                             <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
@@ -158,7 +154,7 @@ export default function MenuList() {
                             {category.items && (
                                 <>
                                     {category.category === 'Drinks' && (
-                                        <motion.div className="mb-8 p-6 bg-gradient-to-r from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-xl text-center text-xl text-gray-800 font-bold">
+                                        <motion.div className="mb-4 p-3 bg-gradient-to-r from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-xl text-center text-xl text-gray-800 font-bold">
                                             🚨 Waiting for mixed beverage license 🚨
                                         </motion.div>
                                     )}
