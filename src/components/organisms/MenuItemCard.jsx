@@ -42,12 +42,21 @@ export default function MenuItemCard({ item, onViewImage }) {
             {/* Header Section with Background Image */}
             <div className="relative h-48 md:h-56">
                 {/* Background Image */}
-                <div
-                    className={`absolute inset-0 bg-cover bg-center`}
-                    style={{
-                        backgroundImage: `url(${item.img || '/menuItems/placeholder.png'})`,
-                    }}
-                />
+                {item.img ? (
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                            backgroundImage: `url(${item.img})`,
+                        }}
+                    />
+                ) : (
+                    <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                        <div className="text-center">
+                            <p className="text-lg font-semibold text-gray-600">Image</p>
+                            <p className="text-xl font-bold text-gray-700">Coming Soon</p>
+                        </div>
+                    </div>
+                )}
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 {/* Text & Icon Container */}
