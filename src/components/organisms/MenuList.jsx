@@ -153,11 +153,6 @@ export default function MenuList() {
 
                             {category.items && (
                                 <>
-                                    {category.category === 'Drinks' && (
-                                        <motion.div className="mb-4 p-3 bg-gradient-to-r from-red-400 to-orange-300 border-l-4 border-yellow-600 rounded-2xl shadow-xl text-center text-xl text-gray-800 font-bold">
-                                            🚨 Waiting for mixed beverage license 🚨
-                                        </motion.div>
-                                    )}
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {sortItems(category.items).map((item, idx) => (
                                             <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />

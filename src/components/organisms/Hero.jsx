@@ -46,6 +46,63 @@ const Hero = () => {
                             Reserve a Table
                         </button>
                     </a>
+                    <div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.8 }}
+                            className="mt-8"
+                        >
+                            <a
+                                href="#happy-hour"
+                                className="group relative display-block text-amber-500 hover:text-amber-400 transition-colors duration-300 text-lg font-medium"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <motion.span
+                                        animate={{ rotate: [0, 15, -15, 0] }}
+                                        transition={{ repeat: Infinity, duration: 4 }}
+                                        className="text-xl"
+                                    >
+                                        ✨
+                                    </motion.span>
+
+                                    <span className="relative">
+                                        Happy Hour Specials
+                                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-amber-400 group-hover:w-full transition-all duration-300 origin-left" />
+                                    </span>
+
+                                    <motion.div
+                                        animate={{ x: [-5, 5, -5] }}
+                                        transition={{ repeat: Infinity, duration: 1.5 }}
+                                        className="text-xl ml-2"
+                                    >
+                                        ↯
+                                    </motion.div>
+                                </div>
+
+                                {/* Subtle floating particles */}
+                                <div className="absolute -top-3 -left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {[...Array(3)].map((_, i) => (
+                                        <motion.div
+                                            key={i}
+                                            className="absolute w-1 h-1 bg-amber-400 rounded-full"
+                                            initial={{ scale: 0 }}
+                                            animate={{
+                                                scale: [0, 1, 0],
+                                                x: Math.random() * 20 - 10,
+                                                y: Math.random() * 20 - 10
+                                            }}
+                                            transition={{
+                                                duration: 1.5,
+                                                repeat: Infinity,
+                                                delay: i * 0.3
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+                            </a>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

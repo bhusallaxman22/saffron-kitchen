@@ -47,7 +47,7 @@ const Reservation = () => {
     };
 
     return (
-        <section id="reservation" className="py-20 px-6 bg-[#f9f9f9] text-center">
+        <section id="reservation" className="py-20 px-6 bg-[#f9f9f9] text-center scroll-mt-[100px]">
             <div className="container mx-auto max-w-2xl">
                 <h2 className="text-3xl font-bold mb-2">Make a Reservation</h2>
                 <p className="text-gray-700 text-xl mb-2">{availability}</p>

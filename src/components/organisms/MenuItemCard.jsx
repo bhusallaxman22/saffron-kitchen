@@ -116,8 +116,8 @@ export default function MenuItemCard({ item, onViewImage }) {
                         itemScope
                         itemType="https://schema.org/Offer"
                     >
-                        <span itemProp="price" content={item.price.toFixed(2)}>
-                            ${item.price.toFixed(2)}
+                        <span itemProp="price" content={typeof (item.price) == "number" ? item.price.toFixed(2) : item.price}>
+                            {typeof (item.price) == "number" ? `$${item.price.toFixed(2)}` : item.price}
                         </span>
                         <meta itemProp="priceCurrency" content="USD" />
                     </div>

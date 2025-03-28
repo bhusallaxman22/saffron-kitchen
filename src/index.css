@@ -22,6 +22,10 @@
   --color-saffron: #CC963C;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: 'Eyescript';
   src: url('/fonts/Eyesome Script.otf') format('opentype');

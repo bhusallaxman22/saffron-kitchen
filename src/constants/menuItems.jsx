@@ -41,6 +41,86 @@ const menuItems = {
       ]
     },
     {
+      "category": "Happy Hour Specials",
+      "subcategories": [
+        {
+          "name": "Craft Drinks",
+          "items": [
+            {
+              "name": "Draft Beer",
+              "price": "$3.00 | $5.00",
+              "description": "Selection varies daily"
+            },
+            {
+              "name": "Bottle Beer",
+              "price": 5,
+              "description": "Imported & craft options"
+            },
+            {
+              "name": "Cocktails",
+              "price": 8,
+              "description": "Classic & signature mixes"
+            },
+            {
+              "name": "Mocktails",
+              "price": 5,
+              "description": "Refreshing non-alcoholic blends"
+            },
+            {
+              "name": "Hose Wine",
+              "price": "$5.00 | $10.00",
+              "description": "Red, white, or sparkling"
+            }
+          ]
+        },
+        {
+          "name": "Irresistible Bites",
+          "items": [
+            {
+              "name": "Jeera Aloo",
+              "price": 5,
+              "description": "Spiced cumin potatoes"
+            },
+            {
+              "name": "Seekh Kabab",
+              "price": 6,
+              "description": "Grilled spiced lamb skewers"
+            },
+            {
+              "name": "Tandoori Wings",
+              "price": 6,
+              "description": "Smoky chili chicken wings"
+            },
+            {
+              "name": "Pakora",
+              "price": 5,
+              "description": "Crispy vegetable fritters"
+            },
+            {
+              "name": "Edamame",
+              "price": 6,
+              "description": "Spiced soybeans with sea salt"
+            },
+            {
+              "name": "Masala Papad",
+              "price": 5,
+              "description": "Spiced lentil crackers"
+            },
+            {
+              "name": "Aloo Tikki Chaat",
+              "price": 5,
+              "description": "Spiced potato patties"
+            },
+            {
+              "name": "Stir Fried Pork Belly",
+              "price": 6,
+              "description": "Chili garlic pork belly"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "category": "Appetizers",
       "subcategories": [
         {
