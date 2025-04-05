@@ -19,24 +19,22 @@ const menuItems = {
         {
           "name": "Saffron Curry",
           "price": 19.99,
-          "description": "Succulent protein cooked in a rich, creamy gravy with blend of aromatic spices.",
+          "description": "Succulent ground Chicken wrapped in egg or Paneer cooked in a rich, creamy gravy with a blend of aromatic spices.",
           "options": [
             { "name": "Paneer", "price": 0 },
-            { "name": "Chicken (Pasanda)", "price": 0 }
+            { "name": "Chicken", "price": 0 }
           ],
           "img": "/menuItems/saffron-curry.jpg"
         },
         {
           "name": "Murg Rara",
           "price": 19.99,
-          "description": "Spicy, flavorful chicken cooked in a rich, aromatic gravy with traditional spices.",
-          //"img": "/menuItems/murg-rara.jpg"
+          "description": "Spicy, flavorful chicken cooked in a rich, aromatic gravy with traditional spices."
         },
         {
           "name": "Stuffed Mushroom",
-          "price": 14.99,
-          "description": "Button mushrooms stuffed with a flavorful blend of spiced vegetables and herbs",
-          //"img": "/menuItems/stuffed-mushroom.jpg"
+          "price": 16.99,
+          "description": "Button mushrooms stuffed with a flavorful blend of spiced vegetables and herbs"
         }
       ]
     },
@@ -130,8 +128,7 @@ const menuItems = {
               "name": "Bhatmas Sandeko",
               "price": 6.99,
               "special": ["vegetarian", "vegan"],
-              "description": "Crispy soybeans tossed with spices, onions, chilies, and mustard oil.",
-              //"img": "/menuItems/bhatmas-sandeko.jpg"
+              "description": "Crispy soybeans tossed with spices, onions, chilies, and mustard oil."
             },
             {
               "name": "Pakora",
@@ -141,8 +138,7 @@ const menuItems = {
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Paneer", "price": 1 }
-              ],
-              //"img": "/menuItems/pakora.jpg"
+              ]
             },
             {
               "name": "Jeera Aloo",
@@ -151,8 +147,7 @@ const menuItems = {
               "description": "Spiced potato cubes sautéed with cumin, mustard seeds, and fresh herbs.",
               "addons": [
                 { "name": "Buffalo Sukuti", "price": 3 }
-              ],
-              //"img": "/menuItems/jeera-aloo.jpg"
+              ]
             },
             {
               "name": "Chatpate",
@@ -162,8 +157,7 @@ const menuItems = {
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Buffalo Sukuti", "price": 3 }
-              ],
-              //"img": "/menuItems/chatpate.jpg"
+              ]
             },
             {
               "name": "Momo",
@@ -174,16 +168,14 @@ const menuItems = {
                 "fillings": [
                   { "name": "Vegetarian", "price": 0 },
                   { "name": "Chicken", "price": 1 },
-                  { "name": "Buffalo", "price": 3 },
-                  { "name": "Beyond Meat", "price": 4 }
+                  { "name": "Buffalo", "price": 3 }
                 ],
                 "styles": [
                   { "name": "Steam", "price": 0 },
-                  { "name": "Jhol", "price": 0 },
-                  { "name": "Kothey", "price": 0 },
+                  { "name": "Jhol", "price": 1 },
+                  { "name": "Kothey", "price": 2 },
                   { "name": "Fried", "price": 0 },
-                  { "name": "Chilli", "price": 2 },
-                  { "name": "Sandeko", "price": 2 },
+                  { "name": "Chilli", "price": 3 },
                   { "name": "Tandoor", "price": 5 }
                 ]
               },
@@ -197,9 +189,9 @@ const menuItems = {
             },
             {
               "name": "Chowmein",
-              "price": 10.99,
+              "price": 13.99,
               "special": ["vegetarian", "vegan"],
-              "description": "Wok-tossed noodles with seasonal veggies and choice of protein.",
+              "description": "Wok-tossed noodles with seasonal veggies, your choice of meat, and a touch of Himalayan spices.",
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Paneer", "price": 1 },
@@ -207,8 +199,7 @@ const menuItems = {
                 { "name": "Goat", "price": 2 },
                 { "name": "Shrimp", "price": 3 },
                 { "name": "Buffalo", "price": 3 },
-                { "name": "Combination", "price": 3 },
-                { "name": "Beyond Meat", "price": 4 }
+                { "name": "Combination", "price": 3 }
               ],
               "img": "/menuItems/CHOWMEIN.jpg"
             },
@@ -220,22 +211,11 @@ const menuItems = {
               "options": [
                 { "name": "Goat", "price": 0 },
                 { "name": "Buff", "price": 0 }
-              ],
-              //"img": "/menuItems/sukuti-sandeko.jpg"
-            },
-            {
-              "name": "Chhoila Set",
-              "price": 14.99,
-              "special": ["spicy"],
-              "description": "Spiced grilled chicken tossed with mustard oil, garlic, and various herbs.",
-              "options": [
-                { "name": "Chicken", "price": 0 }
-              ],
-              //"img": "/menuItems/chhoila-set.jpg"
+              ]
             },
             {
               "name": "Chilli",
-              "price": 12.99,
+              "price": 13.99,
               "special": ["vegetarian"],
               "description": "Stir-fried with bell peppers, onions, and spices in a tangy chili sauce.",
               "options": [
@@ -245,26 +225,22 @@ const menuItems = {
                 { "name": "Shrimp", "price": 3 },
                 { "name": "Buffalo", "price": 3 },
                 { "name": "Combination", "price": 3 }
-              ],
-              //"img": "/menuItems/chilli.jpg"
+              ]
             },
             {
               "name": "Chicken Sausage",
               "price": 6.99,
-              "description": "Infused with various spices.",
-              //"img": "/menuItems/chicken-sausage.jpg"
+              "description": "Chicken sausage infused with various spices"
             },
             {
               "name": "Goat Taas",
               "price": 17.99,
-              "description": "Pan-fried with a blend of 15+ spices, served with pickled radish and fresh herbs.",
-              //"img": "/menuItems/goat-taas.jpg"
+              "description": "Pan-fried with a blend of 15+ spices, served with pickled radish and fresh herbs."
             },
             {
               "name": "Bhutan",
-              "price": 14.99,
-              "description": "Tender goat stomach pieces stir-fried with bold spices, onions, and herbs for a flavorful kick.",
-              //"img": "/menuItems/bhutan.jpg"
+              "price": 15.99,
+              "description": "Tender goat stomach pieces stir-fried with bold spices, onions, and herbs for a flavorful kick"
             },
             {
               "name": "Appetizer Platter",
@@ -273,8 +249,7 @@ const menuItems = {
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 2 }
-              ],
-              //"img": "/menuItems/appetizer-platter.jpg"
+              ]
             }
           ]
         },
@@ -283,7 +258,7 @@ const menuItems = {
           "items": [
             {
               "name": "Gobi Manchurian",
-              "price": 10.99,
+              "price": 13.99,
               "special": ["vegetarian", "vegan"],
               "description": "Crispy cauliflower florets tossed in a flavorful, tangy, and slightly spicy Manchurian sauce.",
               "img": "/menuItems/gobi-manchurian.jpg"
@@ -292,17 +267,13 @@ const menuItems = {
               "name": "Pani Puri",
               "price": 7.99,
               "special": ["vegetarian", "vegan"],
-              "description": "Crispy puris filled with spicy tangy water and spiced potatoes.",
-              "note": "Served on the table",
-              //"img": "/menuItems/pani-puri.jpg"
+              "description": "Crispy puris filled with a spicy, tangy water and spiced potatoes for a burst of flavor."
             },
             {
               "name": "Fulki",
               "price": 7.99,
               "special": ["vegetarian", "vegan"],
-              "description": "Crispy puris filled with tangy, spicy water and chickpeas.",
-              "note": "Served on the table",
-              //"img": "/menuItems/fulki.jpg"
+              "description": "Crispy puris filled with tangy, spicy water and chickpeas for a burst of flavor."
             },
             {
               "name": "Vegetable Samosa",
@@ -312,7 +283,7 @@ const menuItems = {
             },
             {
               "name": "Vegetable Spring Rolls",
-              "price": 4.99,
+              "price": 5.99,
               "description": "Crispy rolls filled with seasoned vegetable, wrapped in a delicate pastry.",
               "img": "/menuItems/SPRING_ROLLS.jpg"
             },
@@ -324,20 +295,19 @@ const menuItems = {
             },
             {
               "name": "Chicken Lollipop",
-              "price": 11.99,
+              "price": 13.99,
               "description": "Crispy, tender chicken drumsticks coated in a tangy, spicy glaze.",
               "img": "/menuItems/CHICKEN_LOLLIPOP.jpg"
             },
             {
               "name": "65",
-              "price": 11.99,
+              "price": 13.99,
               "special": ["vegetarian"],
-              "description": "Crispy, spiced protein marinated in tangy flavorful mix.",
+              "description": "Crispy, spiced chicken or paneer marinated in a tangy, flavorful mix and fried to perfection.",
               "options": [
                 { "name": "Chicken", "price": 0 },
                 { "name": "Paneer", "price": 0 }
-              ],
-              //"img": "/menuItems/65.jpg"
+              ]
             }
           ]
         }
@@ -348,8 +318,8 @@ const menuItems = {
       "items": [
         {
           "name": "Himalayan Sekuwa",
-          "price": 13.99,
-          "description": "Tender, marinated meat skewers grilled with aromatic Nepali spices.",
+          "price": 14.99,
+          "description": "Tender, marinated meat skewers grilled to perfection with aromatic Nepali spices.",
           "options": [
             { "name": "Chicken", "price": 0 },
             { "name": "Pork", "price": 2 },
@@ -359,7 +329,7 @@ const menuItems = {
         },
         {
           "name": "Tandoori",
-          "price": 14.99,
+          "price": 15.99,
           "special": ["vegetarian"],
           "description": "Meat or vegetables marinated in spices and cooked to smoky perfection in a tandoor.",
           "options": [
@@ -374,7 +344,7 @@ const menuItems = {
         {
           "name": "Chicken Tika Kebab",
           "price": 14.99,
-          "description": "Marinated chicken tikka grilled to perfection.",
+          "description": "Marinated, boneless chicken grilled to a smoky perfection.",
           "variants": ["Garlic", "Malai", "Tika"],
           "img": "/menuItems/CHICKEN_TIKA_KEBAB.jpg"
         },
@@ -395,14 +365,12 @@ const menuItems = {
           "options": [
             { "name": "Chicken", "price": 0 },
             { "name": "Lamb", "price": 3 }
-          ],
-          //"img": "/menuItems/sizzler.jpg"
+          ]
         },
         {
           "name": "Lamb Boti Kebab",
           "price": 19.99,
-          "description": "Tender chunks of marinated meat, skewered and grilled with aromatic spices to perfection.",
-          //"img": "/menuItems/lamb-boti-kebab.jpg"
+          "description": "Tender chunks of marinated meat, skewered and grilled with aromatic spices to perfection"
         },
         {
           "name": "Lamb Chops",
@@ -420,9 +388,9 @@ const menuItems = {
           "items": [
             {
               "name": "Himalayan Thali",
-              "price": 13.99,
+              "price": 14.99,
               "special": ["vegetarian"],
-              "description": "Traditional Nepali platter with multiple components.",
+              "description": "A traditional Nepali platter with rice, lentils, vegetables, curries, chutneys, and buttermilk lassi for a complete, authentic meal.",
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 1 },
@@ -432,14 +400,13 @@ const menuItems = {
             },
             {
               "name": "Indian Thali",
-              "price": 13.99,
+              "price": 15.99,
               "description": "An Indian platter with rice, dal, vegetables, roti, curries, and buttermilk lassi for a complete, authentic meal.",
               "options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 1 },
                 { "name": "Goat", "price": 3 }
-              ],
-              //"img": "/menuItems/indian-thali.jpg"
+              ]
             }
           ]
         },
@@ -462,38 +429,33 @@ const menuItems = {
             },
             {
               "name": "Daal Makhani",
-              "price": 13.99,
+              "price": 16.99,
               "special": ["vegetarian"],
-              "description": "A creamy, slow-cooked blend of black lentils and kidney beans, enriched with butter, cream, and aromatic spices.",
-              //"img": "/menuItems/daal-makhani.jpg"
+              "description": "A creamy, slow-cooked blend of black lentils and kidney beans, enriched with butter, cream, and aromatic spices."
             },
             {
               "name": "Paneer Makhani",
-              "price": 14.99,
+              "price": 15.99,
               "special": ["vegetarian"],
-              "description": "A rich, creamy tomato-based curry with butter and aromatic spices.",
-              //"img": "/menuItems/paneer-makhani.jpg"
+              "description": "A rich, creamy tomato-based curry with butter and aromatic spices."
             },
             {
               "name": "Malai Kofta",
-              "price": 14.99,
+              "price": 15.99,
               "special": ["vegetarian"],
-              "description": "Soft, flavorful dumplings made of paneer and vegetables, simmered in a rich, creamy tomato gravy.",
-              //"img": "/menuItems/malai-kofta.jpg"
+              "description": "Soft, flavorful dumplings made of paneer and vegetables, simmered in a rich, creamy tomato gravy."
             },
             {
               "name": "Mushroom Aloo Matar",
               "price": 15.99,
               "special": ["vegetarian"],
-              "description": "A hearty mix of mushrooms, potatoes, and peas in a spiced gravy.",
-              //"img": "/menuItems/mushroom-aloo-matar.jpg"
+              "description": "A hearty mix of mushrooms, potatoes, and peas in a spiced gravy."
             },
             {
-              "name": "Mixed Vegitable Curry",
+              "name": "Mixed Vegetable Curry",
               "price": 13.99,
               "special": ["vegetarian"],
-              "description": "A medley of vegetables cooked in a flavorful, spiced curry.",
-              //"img": "/menuItems/mixed-veg-curry.jpg"
+              "description": "A medley of vegetables cooked in a flavorful, spiced curry."
             },
             {
               "name": "Saag",
@@ -505,8 +467,7 @@ const menuItems = {
                 { "name": "Chicken", "price": 0 },
                 { "name": "Lamb", "price": 3 },
                 { "name": "Shrimp", "price": 4 }
-              ],
-              //"img": "/menuItems/saag.jpg"
+              ]
             }
           ]
         },
@@ -522,8 +483,7 @@ const menuItems = {
                 { "name": "Chicken", "price": 0 },
                 { "name": "Lamb", "price": 3 },
                 { "name": "Shrimp", "price": 4 }
-              ],
-              //"img": "/menuItems/tika-masala.jpg"
+              ]
             },
             {
               "name": "Korma",
@@ -537,14 +497,13 @@ const menuItems = {
             },
             {
               "name": "Kadahi",
-              "price": 14.99,
+              "price": 15.99,
               "description": "A spiced curry cooked in a wok, with meat or vegetables and aromatic herbs.",
               "options": [
                 { "name": "Paneer", "price": 0 },
                 { "name": "Chicken", "price": 0 },
                 { "name": "Shrimp", "price": 4 }
-              ],
-              //"img": "/menuItems/kadahi.jpg"
+              ]
             },
             {
               "name": "Butter Chicken",
@@ -554,14 +513,13 @@ const menuItems = {
             },
             {
               "name": "Fish Curry",
-              "price": 15.99,
+              "price": 16.99,
               "description": "Fish cooked in a rich, spiced tomato gravy with aromatic herbs.",
               "options": [
                 { "name": "Tilapia", "price": 0 },
                 { "name": "Shrimp", "price": 4 },
                 { "name": "Mix Sea Food", "price": 4 }
-              ],
-              //"img": "/menuItems/fish-curry.jpg"
+              ]
             }
           ]
         }
@@ -575,7 +533,7 @@ const menuItems = {
           "items": [
             {
               "name": "Naan",
-              "price": 2.99,
+              "price": 3.49,
               "type_options": [
                 { "name": "Regular", "price": 0 },
                 { "name": "Butter", "price": 0.5 },
@@ -601,12 +559,11 @@ const menuItems = {
                 { "name": "Regular", "price": 0 },
                 { "name": "Zeera", "price": 1 },
                 { "name": "Nepali Pulao", "price": 3 }
-              ],
-              //"img": "/menuItems/rice.jpg"
+              ]
             },
             {
               "name": "Briyani",
-              "price": 12.99,
+              "price": 13.99,
               "special": ["vegetarian"],
               "description": "Aromatic rice and spiced meat or vegetables, slow-cooked together for rich, layered flavors.",
               "type_options": [
@@ -622,15 +579,14 @@ const menuItems = {
               "name": "Fried Rice",
               "price": 12.99,
               "special": ["vegetarian", "vegan"],
-              "description": "Aromatic rice tossed with seasonal vegetables and choice of meats.",
+              "description": "Aromatic rice tossed with seasonal vegetables and choice of protein.",
               "type_options": [
                 { "name": "Vegetarian", "price": 0 },
                 { "name": "Chicken", "price": 1 },
                 { "name": "Pork", "price": 2 },
                 { "name": "Shrimp", "price": 4 },
                 { "name": "Combination", "price": 4 }
-              ],
-              //"img": "/menuItems/fried-rice.jpg"
+              ]
             }
           ]
         }
@@ -641,8 +597,7 @@ const menuItems = {
       "items": [
         {
           "name": "Ice-cream Trio",
-          "price": 2.99,
-          //"img": "/menuItems/ice-cream-trio.jpg"
+          "price": 3.99
         },
         {
           "name": "Rasmalai",
@@ -651,8 +606,7 @@ const menuItems = {
         },
         {
           "name": "Gulab Jamon",
-          "price": 4.99,
-          //"img": "/menuItems/gulab-jamon.jpg"
+          "price": 4.99
         }
       ]
     },
@@ -662,30 +616,25 @@ const menuItems = {
         {
           "name": "Lassi",
           "price": 4.99,
-          "type_options": ["Mango", "Sweet", "Salt"],
-          //"img": "/menuItems/lassi.jpg"
+          "type_options": ["Mango", "Sweet", "Salt"]
         },
         {
           "name": "Buttermilk Lassi (Mohi)",
-          "price": 4.99,
-          //"img": "/menuItems/buttermilk-lassi.jpg"
+          "price": 4.99
         },
         {
           "name": "Coffee",
-          "price": 2.99,
-          //"img": "/menuItems/coffee.jpg"
+          "price": 2.99
         },
         {
           "name": "Masala Tea",
-          "price": 2.99,
-          "type_options": ["Hot", "Cold"],
-          //"img": "/menuItems/masala-tea.jpg"
+          "price": 3.99,
+          "type_options": ["Hot"]
         },
         {
           "name": "Soft Drinks",
           "price": 2.99,
-          "type_options": ["Coke", "Fanta", "Sprite"],
-          //"img": "/menuItems/soft-drinks.jpg"
+          "type_options": ["Coke", "Fanta", "Sprite"]
         }
       ]
     },
@@ -697,21 +646,18 @@ const menuItems = {
           "items": [
             {
               "name": "Goat Bone Soup",
-              "price": 4.99,
-              "description": "A rich, flavorful goat bone broth simmered with spices.",
-              //"img": "/menuItems/goat-bone-soup.jpg"
+              "price": 5.99,
+              "description": "A rich, flavorful goat bone broth simmered with spices."
             },
             {
               "name": "Tomyum Soup",
               "price": 4.99,
-              "description": "A tangy, spicy soup with shrimp, mushrooms, and herbs.",
-              //"img": "/menuItems/tomyum-soup.jpg"
+              "description": "A tangy, spicy soup with shrimp, mushrooms, and herbs."
             },
             {
               "name": "Manchow Soup",
               "price": 4.99,
-              "description": "A spicy, tangy Indo Chinese soup with mixed vegetables and crispy noodles.",
-              //"img": "/menuItems/manchow-soup.jpg"
+              "description": "A spicy, tangy Indo Chinese soup with mixed vegetables and crispy noodles."
             },
             {
               "name": "Muligatwan Soup",
@@ -720,10 +666,9 @@ const menuItems = {
               "img": "/menuItems/MULIGATWAN_SOUP.jpg"
             },
             {
-              "name": "Veggie Soup",
+              "name": "Vegetable Soup",
               "price": 3.99,
-              "description": "A light, comforting soup made with a blend of fresh vegetables and aromatic spices.",
-              //"img": "/menuItems/veggie-soup.jpg"
+              "description": "A light, comforting soup made with a blend of fresh vegetables and aromatic spices."
             }
           ]
         },
@@ -733,8 +678,7 @@ const menuItems = {
             {
               "name": "Garden Fresh Salad",
               "price": 6.99,
-              "description": "Crispy mix of greens laced with cheese with chef's special dressing.",
-              //"img": "/menuItems/garden-fresh-salad.jpg"
+              "description": "Crispy mix of greens laced with cheese with chef's special dressing."
             },
             {
               "name": "Nepali Salad",
@@ -750,27 +694,25 @@ const menuItems = {
       "category": "For Kids: Simple Flavors, Big Smiles",
       "items": [
         {
-          "name": "Tika Masala",
-          "price": 8.99,
-          "special_tags": ["vegetarian"],
+          "name": "Kids Tika Masala",
+          "price": 9.99,
+          "special": ["vegetarian"],
           "description": "Mild, creamy tikka masala with tender chicken and served with rice or naan, perfect for kids.",
-          "type_options": [
+          "options": [
             { "name": "Paneer", "price": 0 },
             { "name": "Chicken", "price": 2 }
-          ],
-          //"img": "/menuItems/tika-masala.jpg"
+          ]
         },
         {
           "name": "Chicken Strips & Fries",
           "price": 7.99,
-          "description": "Crispy chicken strips served with golden fries, a perfect snack or meal.",
-          //"img": "/menuItems/chicken-strips.jpg"
+          "description": "Crispy chicken strips served with golden fries, a perfect snack or meal."
         },
         {
-          "name": "Butter Pasta w. Tikka Masala Sauce",
-          "price": 6.99,
-          "description": "Creamy pasta tossed in a rich, buttery sauce for a comforting dish.",
-          //"img": "/menuItems/butter-pasta.jpg"
+          "name": "Butter Pasta with Fries",
+          "price": 7.99,
+          "special": ["vegetarian"],
+          "description": "Creamy pasta tossed in a rich, buttery sauce for a comforting dish."
         }
       ]
     }
@@ -778,4 +720,3 @@ const menuItems = {
 };
 
 export default menuItems;
-
