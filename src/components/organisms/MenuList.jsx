@@ -32,8 +32,6 @@ export default function MenuList() {
         });
     };
 
-
-    // Update the handleCategoryChange function
     const handleCategoryChange = (category) => {
         if (activeCategory === category) return;
         isManualScroll.current = true;
@@ -54,8 +52,7 @@ export default function MenuList() {
         }, 1000);
     };
 
-    // Update STICKY_NAV_HEIGHT to match actual nav height (example value)
-    const STICKY_NAV_HEIGHT = 210; // 4rem (scroll-mt-16) = 64px
+    const STICKY_NAV_HEIGHT = 200; // 4rem (scroll-mt-16) = 64px
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -70,12 +67,10 @@ export default function MenuList() {
             {
                 root: containerRef.current,
                 threshold: 0.1,
-                // Adjust rootMargin based on your sticky nav height
                 rootMargin: `-${STICKY_NAV_HEIGHT}px 0px 0px 0px`
             }
         );
 
-        // Observe all category sections
         Object.values(categoryRefs.current).forEach(el => {
             if (el) observer.observe(el);
         });
@@ -94,13 +89,12 @@ export default function MenuList() {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ marginTop: '4vh' }}
             >
-                <Heading className="mb-2" itemProp="name">
+                <Heading className="mb-2 text-4xl" itemProp="name">
                     Our Menu
                 </Heading>
                 <MenuSearchBar query={query} onQueryChange={setQuery} />
             </motion.header>
 
-            {/* Sticky Category Navigation – placed outside the main scrollable section */}
             {!query.trim() && (
                 <div className="sticky top-0 z-30 bg-[#f9f9f9] shadow-sm">
                     <CategoryNav
@@ -111,11 +105,10 @@ export default function MenuList() {
                 </div>
             )}
 
-            {/* Main Scrollable Content */}
             <section className="h-[calc(100vh-8rem)] overflow-y-auto pt-4" ref={containerRef}>
                 {query.trim() ? (
                     results?.length ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {sortItems(results).map((item, idx) => (
                                 <MenuItemCard key={idx} item={item} onViewImage={setModalImg} />
                             ))}
@@ -131,7 +124,6 @@ export default function MenuList() {
                             key={category.category}
                             ref={el => (categoryRefs.current[category.category] = el)}
                             data-category={category.category}
-                            // Adjust scroll margin so section headings aren’t hidden by the sticky nav
                             className="py-4 scroll-mt-8"
                         >
                             <h3 className="mb-3 text-xl font-bold text-slate-800 border-l-4 border-pink-500 pl-4">
@@ -165,7 +157,6 @@ export default function MenuList() {
                 )}
             </section>
 
-            {/* Modal for viewing images */}
             {modalImg && (
                 <motion.div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"

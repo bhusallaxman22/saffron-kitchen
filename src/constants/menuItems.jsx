@@ -8,7 +8,7 @@ const menuItems = {
           "price": 17.99,
           "special": ["spicy"],
           "description": "Crispy, flavorful chicken drumsticks coated in a spicy, tangy glaze.",
-          //"img": "/menuItems/drum-stick.webp"
+          "img": "/menuItems/drum-stick.jpg"
         },
         {
           "name": "Saffron Grilled Tika",
@@ -24,7 +24,7 @@ const menuItems = {
             { "name": "Paneer", "price": 0 },
             { "name": "Chicken (Pasanda)", "price": 0 }
           ],
-          //"img": "/menuItems/chicken-curry.jpg"
+          "img": "/menuItems/saffron-curry.jpg"
         },
         {
           "name": "Murg Rara",
@@ -193,7 +193,7 @@ const menuItems = {
               "name": "Momo Platter",
               "price": 24.99,
               "description": "Four varieties of authentic Nepali dumplings.",
-              //"img": "/menuItems/momo-platter.jpg"
+              "img": "/menuItems/momo-platter.jpg"
             },
             {
               "name": "Chowmein",
@@ -286,7 +286,7 @@ const menuItems = {
               "price": 10.99,
               "special": ["vegetarian", "vegan"],
               "description": "Crispy cauliflower florets tossed in a flavorful, tangy, and slightly spicy Manchurian sauce.",
-              //"img": "/menuItems/gobi-manchurian.jpg"
+              "img": "/menuItems/gobi-manchurian.jpg"
             },
             {
               "name": "Pani Puri",
@@ -320,7 +320,7 @@ const menuItems = {
               "name": "Onion Rings",
               "price": 5.99,
               "description": "Crispy, golden-brown battered onion rings, seasoned to perfection.",
-              //"img": "/menuItems/onion-rings.jpg"
+              "img": "/menuItems/onion-rings.jpg"
             },
             {
               "name": "Chicken Lollipop",
@@ -408,7 +408,7 @@ const menuItems = {
           "name": "Lamb Chops",
           "price": 24.99,
           "description": "Succulent lamb chops marinated in aromatic spices and grilled to tender, smoky perfection.",
-          //"img": "/menuItems/lamb-chops.jpg"
+          "img": "/menuItems/lamb-chop.jpg"
         }
       ]
     },
@@ -533,7 +533,7 @@ const menuItems = {
                 { "name": "Chicken", "price": 0 },
                 { "name": "Lamb", "price": 3 }
               ],
-              //"img": "/menuItems/korma.jpg"
+              "img": "/menuItems/korma.jpg"
             },
             {
               "name": "Kadahi",
@@ -616,7 +616,7 @@ const menuItems = {
                 { "name": "Lamb", "price": 3 },
                 { "name": "Shrimp", "price": 4 }
               ],
-              "img": "/menuItems/BRIYAN.jpg"
+              "img": "/menuItems/Briyani-min.jpg"
             },
             {
               "name": "Fried Rice",
@@ -740,7 +740,7 @@ const menuItems = {
               "name": "Nepali Salad",
               "price": 5.99,
               "description": "Crunchy sliced carrot, cucumber and radish in homemade dipping.",
-              //"img": "/menuItems/nepali-salad.jpg"
+              "img": "/menuItems/nepali-salad.jpg"
             }
           ]
         }

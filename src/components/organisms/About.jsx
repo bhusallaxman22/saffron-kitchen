@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heading, Subheading } from '../ui/Typography';
-import aboutMain from '../../assets/hero-1.jpg';
-import aboutSide1 from '../../assets/hero-2.jpg';
-import aboutSide2 from '../../assets/butter-chicken.jpg';
+import aboutMain from '/menuItems/food-samplers.jpg';
+import aboutSide1 from '/menuItems/saffron-curry.jpg';
+import aboutSide2 from '/menuItems/nepali-salad.jpg';
 
 const About = () => {
   return (
